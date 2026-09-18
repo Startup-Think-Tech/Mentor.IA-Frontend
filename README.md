@@ -136,6 +136,12 @@ Inicie o desenvolvimento:
 npm run dev
 ```
 
+Ou suba pelo Docker Compose a partir da pasta `app/`:
+
+```bash
+docker compose up -d
+```
+
 URLs locais:
 
 - App: `http://localhost:3000`
