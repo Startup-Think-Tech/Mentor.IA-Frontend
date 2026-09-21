@@ -1,0 +1,207 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>Mentor.ia - Login</title>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef4ff',
+              100: '#e0eaff',
+              200: '#c7d7fe',
+              300: '#a4bcfe',
+              400: '#8098f9',
+              500: '#6175f3',
+              600: '#2b52ba',
+              700: '#1e40af',
+              800: '#1e3a8a',
+              900: '#172554',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<!-- Custom Layout Styles -->
+<style data-purpose="layout">
+    /* Fix mobile viewport height */
+    .app-screen {
+      min-height: 100vh;
+      max-width: 420px;
+    }
+    /* Smooth transition for interactive elements */
+    .btn-press:active {
+      transform: scale(0.985);
+    }
+  </style>
+</head>
+<body class="bg-slate-100 flex items-center justify-center min-h-screen font-sans text-white antialiased selection:bg-white/20">
+<!-- BEGIN: MobileDeviceFrame -->
+<main class="app-screen w-full bg-gradient-to-b from-[#2550bf] via-[#214bb5] to-[#1c40a3] shadow-2xl relative flex flex-col justify-between overflow-hidden sm:rounded-[40px] sm:my-6 sm:border-[8px] sm:border-slate-800">
+<!-- Decorative background elements -->
+<div class="absolute -top-24 -right-24 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute bottom-10 -left-20 w-64 h-64 bg-indigo-500/15 rounded-full blur-2xl pointer-events-none"></div>
+<div class="flex-1 flex flex-col px-6 pt-2 pb-6 z-10">
+<!-- BEGIN: StatusBar -->
+<!-- iOS Status Bar Simulation -->
+<header class="w-full flex items-center justify-between text-xs font-semibold tracking-tight text-white/90 pt-3 pb-4" data-purpose="status-bar">
+<span class="pl-1">09:41</span>
+<div class="flex items-center space-x-2 pr-1">
+<!-- Signal Icon -->
+<svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+<path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L12 22l7.03-4.39C20.26 16.07 21 14.12 21 12c0-4.97-4.03-9-9-9zm0 2c3.87 0 7 3.13 7 7 0 1.54-.5 2.97-1.35 4.14L12 19.53l-5.65-3.39C5.5 14.97 5 13.54 5 12c0-3.87 3.13-7 7-7z" opacity="0.2"></path>
+<path d="M12 6a6 6 0 00-6 6c0 1.25.4 2.41 1.07 3.36L12 18.25l4.93-2.89A5.96 5.96 0 0018 12a6 6 0 00-6-6z" opacity="0.5"></path>
+<path d="M12 9a3 3 0 00-3 3c0 .66.22 1.28.58 1.78L12 15.25l2.42-1.47c.36-.5.58-1.12.58-1.78a3 3 0 00-3-3z"></path>
+</svg>
+<!-- Wifi Icon -->
+<svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+<path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98C20.93 5.9 16.69 4 12 4zm0 3.5c3.55 0 6.8 1.34 9.27 3.55L12 18.67 2.73 11.05C5.2 8.84 8.45 7.5 12 7.5z"></path>
+</svg>
+<!-- Battery Icon -->
+<div class="w-5 h-2.5 border border-white/80 rounded-sm p-0.5 flex items-center">
+<div class="h-full w-3.5 bg-white rounded-2xs"></div>
+</div>
+</div>
+</header>
+<!-- END: StatusBar -->
+<!-- BEGIN: WelcomeHeader -->
+<!-- Welcome message and greeting section -->
+<section class="mt-2 text-left" data-purpose="welcome-greeting">
+<h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white leading-tight">
+          Bem-vindo de volta !
+        </h1>
+<p class="text-blue-200 text-sm font-normal mt-1 leading-relaxed">
+          Faça login para continuar sua jornada.
+        </p>
+</section>
+<!-- END: WelcomeHeader -->
+<!-- BEGIN: BrandHeroSection -->
+<!-- Mascot illustration and platform branding -->
+<section class="flex flex-col items-center justify-center my-auto py-4" data-purpose="brand-hero">
+<div class="relative flex items-center justify-center w-36 h-28">
+<!-- Graduation Cap Vector Illustration -->
+<div class="relative z-10 w-28 h-24 flex items-center justify-center">
+<svg class="w-full h-full drop-shadow-lg" fill="none" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">
+<!-- Cap top -->
+<polygon fill="#1e293b" points="100,20 185,55 100,90 15,55" stroke="#334155" stroke-linejoin="round" stroke-width="3"></polygon>
+<polygon fill="#334155" opacity="0.5" points="100,20 185,55 100,65 15,55"></polygon>
+<!-- Skull cap base -->
+<path d="M50,70 L50,98 C50,118 150,118 150,98 L150,70" fill="#0f172a" stroke="#334155" stroke-width="2"></path>
+<!-- Center Button -->
+<ellipse cx="100" cy="55" fill="#e2e8f0" rx="5" ry="3"></ellipse>
+<!-- Tassel Cord & Brush -->
+<path d="M100,55 Q135,70 145,95" fill="none" stroke="#f8fafc" stroke-linecap="round" stroke-width="2.5"></path>
+<path d="M145,95 L142,122 C142,125 150,125 150,122 L147,95 Z" fill="#f8fafc"></path>
+<!-- Diploma / Certificate -->
+<g transform="translate(115, 60) rotate(22)">
+<rect fill="#fef08a" height="24" rx="6" stroke="#ca8a04" stroke-width="2" width="48" x="0" y="0"></rect>
+<line stroke="#facc15" stroke-width="1.5" x1="8" x2="8" y1="4" y2="20"></line>
+<!-- Ribbon Red/Gold -->
+<rect fill="#ef4444" height="24" width="7" x="22" y="0"></rect>
+<path d="M22,24 L18,34 L25.5,30 L33,34 L29,24 Z" fill="#ef4444"></path>
+</g>
+<!-- Sparkles -->
+<path d="M165,22 L168,12 L171,22 L181,25 L171,28 L168,38 L165,28 L155,25 Z" fill="#fbbf24"></path>
+<path d="M30,35 L32,27 L34,35 L42,37 L34,39 L32,47 L30,39 L22,37 Z" fill="#fbbf24" opacity="0.85"></path>
+<circle cx="185" cy="48" fill="#fde047" r="2.5"></circle>
+</svg>
+</div>
+</div>
+<!-- App Name -->
+<h2 class="text-3xl font-extrabold tracking-tight text-white mt-1 flex items-center gap-0.5">
+          Mentor<span class="text-amber-300">.ia</span>
+</h2>
+<!-- App Tagline -->
+<p class="text-xs sm:text-[13px] text-blue-100 font-medium text-center mt-1 max-w-[210px] leading-snug opacity-95">
+          Tecnologia que entende como você aprende.
+        </p>
+</section>
+<!-- END: BrandHeroSection -->
+<!-- BEGIN: LoginForm -->
+<!-- Login credentials input section -->
+<form action="#" class="w-full space-y-4" data-purpose="login-form" method="POST" onsubmit="event.preventDefault();">
+<!-- Email Input Field -->
+<div class="space-y-1.5 text-left">
+<label class="block text-xs font-semibold text-white/90 pl-1" for="email">
+            E-mail:
+          </label>
+<div class="relative">
+<input class="w-full h-12 px-4 rounded-xl bg-white/20 border border-white/25 text-white placeholder-blue-200/60 text-sm focus:outline-none focus:ring-2 focus:ring-white/60 focus:bg-white/25 transition-all shadow-inner" id="email" name="email" placeholder="nome@exemplo.com" required="" type="email">
+</div>
+</div>
+<!-- Password Input Field -->
+<div class="space-y-1.5 text-left">
+<label class="block text-xs font-semibold text-white/90 pl-1" for="password">
+            Senha:
+          </label>
+<div class="relative">
+<input class="w-full h-12 pl-4 pr-11 rounded-xl bg-white/20 border border-white/25 text-white placeholder-blue-200/60 text-sm tracking-wider focus:outline-none focus:ring-2 focus:ring-white/60 focus:bg-white/25 transition-all shadow-inner" id="password" name="password" placeholder="••••••••" required="" type="password">
+<!-- Password Toggle Visibility Icon -->
+<button aria-label="Alternar visibilidade da senha" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-blue-200/70 hover:text-white transition-colors" data-purpose="password-toggle" id="toggle-password" type="button">
+<svg class="w-5 h-5" fill="none" id="eye-icon" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</div>
+<!-- Submit Button -->
+<div class="pt-2">
+<button class="btn-press w-full h-12 bg-[#4268bd] hover:bg-[#4d75d1] active:bg-[#3b5fae] text-white font-semibold text-base rounded-xl transition-all shadow-md shadow-blue-900/40 border border-white/20 flex items-center justify-center tracking-wide" type="submit">
+            Entrar
+          </button>
+</div>
+</form>
+<!-- END: LoginForm -->
+<!-- BEGIN: FooterNavigation -->
+<!-- Password recovery and account registration links -->
+<footer class="pt-6 pb-2 w-full flex items-center justify-between text-xs sm:text-sm font-medium" data-purpose="auth-links">
+<a class="text-blue-100 hover:text-white underline underline-offset-4 decoration-blue-300/60 transition-colors" href="#forgot-password">
+          Esqueceu a senha?
+        </a>
+<a class="text-white font-bold hover:underline underline-offset-4 transition-all" href="#register">
+          Criar conta
+        </a>
+</footer>
+<!-- END: FooterNavigation -->
+<!-- iOS Home Indicator Indicator -->
+<div aria-hidden="true" class="w-32 h-1 bg-white/40 rounded-full mx-auto mt-2 mb-1"></div>
+</div>
+</main>
+<!-- END: MobileDeviceFrame -->
+<!-- Password Visibility Toggle Interaction -->
+<script data-purpose="interactive-script">
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggleBtn = document.getElementById('toggle-password');
+      const passwordInput = document.getElementById('password');
+      const eyeIcon = document.getElementById('eye-icon');
+
+      if (toggleBtn && passwordInput) {
+        toggleBtn.addEventListener('click', () => {
+          const isPassword = passwordInput.getAttribute('type') === 'password';
+          passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
+          
+          // Toggle icon representation
+          if (isPassword) {
+            eyeIcon.innerHTML = `
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18"/>
+            `;
+          } else {
+            eyeIcon.innerHTML = `
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+            `;
+          }
+        });
+      }
+    });
+  </script>
+</body></html>
