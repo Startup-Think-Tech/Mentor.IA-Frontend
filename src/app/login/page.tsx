@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import { GraduationCap, PencilLine, Sparkles } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Login | Mentor.ia",
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function LoginPage() {
   return (
     <main className="flex min-h-dvh items-center justify-center bg-[#f3f4f8] p-1.5 sm:p-6">
-      <section className="flex min-h-[calc(100dvh-12px)] w-full max-w-[420px] flex-col rounded-[20px] bg-[#3954b8] px-5 py-5 text-white sm:min-h-[640px] sm:max-w-[380px] sm:rounded-[28px] sm:px-7 sm:py-7 sm:shadow-2xl">
+      <section className="flex min-h-[calc(100dvh-12px)] w-full max-w-[420px] flex-col rounded-[20px] bg-[#304eac] px-5 py-5 text-white sm:min-h-[640px] sm:max-w-[380px] sm:rounded-[28px] sm:px-7 sm:py-7 sm:shadow-2xl">
         <header>
           <h1 className="text-[1.35rem] font-extrabold leading-tight tracking-[-0.02em]">
             Bem-vindo de volta!
@@ -21,29 +21,16 @@ export default function LoginPage() {
         </header>
 
         <div className="flex flex-1 flex-col items-center justify-center text-center">
-          <div
-            className="relative flex h-20 w-24 items-center justify-center"
-            aria-hidden="true"
-          >
-            <GraduationCap
-              className="h-14 w-14 -rotate-6 stroke-[1.6]"
-              color="#111827"
-            />
-            <PencilLine
-              className="absolute bottom-2 right-1 h-7 w-7 -rotate-[24deg]"
-              color="#f8d94e"
-            />
-            <Sparkles
-              className="absolute right-2 top-0 h-6 w-6"
-              color="#ffd83d"
-              fill="#ffd83d"
-            />
-          </div>
+          <Image
+            src="/logo-mentoria.png"
+            alt="Mentor.ia"
+            width={144}
+            height={125}
+            priority
+            className="h-auto w-36"
+          />
 
-          <h2 className="mt-1 text-xl font-extrabold tracking-[-0.03em]">
-            Mentor.ia
-          </h2>
-          <p className="mt-0.5 text-[0.68rem] leading-snug text-white/90">
+          <p className="mt-1 text-[0.68rem] leading-snug text-white/90">
             Tecnologia que entende como
             <br />
             você aprende.
