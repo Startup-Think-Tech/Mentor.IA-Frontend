@@ -1,33 +1,20 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import { Providers } from "@/lib/react-query";
+import { Geist_Mono, Inter } from "next/font/google";
+
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const inter = Inter({ variable: "--font-inter", subsets: ["latin"], display: "swap" });
+const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Mentor.ia | Preparação ENEM personalizada por IA",
-  description:
-    "Plataforma educacional que identifica lacunas de aprendizado e transforma dados do ENEM em trilhas de estudo personalizadas com apoio de IA.",
+  title: "Mentor.ia",
+  description: "Plataforma educacional para preparação personalizada para o ENEM.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="pt-br"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">
-        <Providers>{children}</Providers>
-      </body>
+    <html lang="pt-BR" className={`${inter.variable} ${geistMono.variable} antialiased`}>
+      <body className="min-h-dvh bg-background text-foreground">{children}</body>
     </html>
   );
 }
