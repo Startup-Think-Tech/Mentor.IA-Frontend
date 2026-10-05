@@ -1,0 +1,297 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>Mentor.ia - Visão de Gaps de Aprendizagem</title>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              600: '#4f46e5',
+              700: '#4338ca',
+              900: '#1e1b4b',
+            },
+            level: {
+              critical: '#DC2626',
+              high: '#EA580C',
+              medium: '#EAB308',
+              low: '#059669',
+            }
+          },
+          fontFamily: {
+            sans: ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Text', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+          },
+          boxShadow: {
+            'card': '0 2px 8px -1px rgba(0, 0, 0, 0.04), 0 1px 3px -1px rgba(0, 0, 0, 0.03)',
+            'nav': '0 -2px 10px rgba(0, 0, 0, 0.03)'
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-scroll">
+    /* Remove scrollbars for a clean native mobile viewport */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+<style data-purpose="touch-optimizations">
+    * {
+      -webkit-tap-highlight-color: transparent;
+    }
+    body {
+      touch-action: manipulation;
+    }
+  </style>
+</head>
+<body class="bg-slate-100 flex justify-center items-center min-h-screen text-slate-800 antialiased p-0 sm:p-4">
+<!-- BEGIN: MobileDeviceFrame -->
+<main class="w-full max-w-md bg-[#F8FAFC] min-h-screen sm:min-h-[844px] sm:max-h-[890px] sm:rounded-[40px] flex flex-col relative overflow-hidden shadow-2xl sm:border-[8px] sm:border-slate-800">
+<!-- BEGIN: iOSStatusBar -->
+<header class="w-full pt-3 px-6 pb-2 flex justify-between items-center bg-[#F8FAFC] z-30 select-none">
+<span class="text-sm font-semibold tracking-tight text-slate-900">9:41</span>
+<!-- iOS Right Status Icons -->
+<div class="flex items-center space-x-2 text-slate-900">
+<!-- Cellular Signal Icon -->
+<svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+<rect height="5" rx="0.8" width="3" x="2" y="16"></rect>
+<rect height="9" rx="0.8" width="3" x="7" y="12"></rect>
+<rect height="13" rx="0.8" width="3" x="12" y="8"></rect>
+<rect height="17" rx="0.8" width="3" x="17" y="4"></rect>
+</svg>
+<!-- Wifi Icon -->
+<svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+<path d="M12 4c4.3 0 8.2 1.7 11.1 4.5l-2.1 2.1C18.6 8.4 15.4 7 12 7c-3.4 0-6.6 1.4-9 3.6L.9 8.5C3.8 5.7 7.7 4 12 4zm0 6c2.7 0 5.2 1.1 7 2.9l-2.1 2.1C15.6 13.8 13.9 13 12 13s-3.6.8-4.9 2l-2.1-2.1c1.8-1.8 4.3-2.9 7-2.9zm0 6c1.2 0 2.2.5 3 1.3L12 20.2l-3-2.9c.8-.8 1.8-1.3 3-1.3z"></path>
+</svg>
+<!-- Battery Icon -->
+<div class="flex items-center">
+<div class="w-5 h-2.5 border border-slate-900 rounded-[3px] p-0.5 flex items-center">
+<div class="w-full h-full bg-slate-900 rounded-[1px]"></div>
+</div>
+<div class="w-0.5 h-1 bg-slate-900 rounded-r-sm"></div>
+</div>
+</div>
+</header>
+<!-- END: iOSStatusBar -->
+<!-- BEGIN: TopNavigation -->
+<section class="px-5 pt-1 pb-3 bg-[#F8FAFC] z-20" data-purpose="screen-header">
+<div class="flex items-center space-x-3 mb-1.5">
+<button aria-label="Voltar" class="p-1 -ml-1 text-slate-700 hover:text-slate-900 transition-colors focus:outline-none" type="button">
+<svg class="w-6 h-6 stroke-current" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24">
+<polyline points="15 18 9 12 15 6"></polyline>
+</svg>
+</button>
+<h1 class="text-xl font-bold text-slate-900 tracking-tight leading-tight">Visão de Gaps</h1>
+</div>
+<div class="flex items-center justify-between pl-8">
+<span class="text-[11px] font-bold tracking-wider text-indigo-700 uppercase">Seus Gaps de Aprendizagem</span>
+<span class="text-xs text-slate-400 font-medium">4 matérias avaliadas</span>
+</div>
+</section>
+<!-- END: TopNavigation -->
+<!-- BEGIN: FilterToolbar -->
+<section class="px-5 py-2 flex items-center justify-between text-xs text-slate-600 bg-white border-y border-slate-200/70 shadow-sm" data-purpose="filtering">
+<div class="flex items-center space-x-1.5 font-medium">
+<span>Ordenar por:</span>
+<select class="bg-transparent font-semibold text-slate-800 border-none p-0 pr-4 text-xs focus:ring-0 cursor-pointer">
+<option>Maior Prioridade</option>
+<option>Menor Domínio</option>
+<option>Ordem Alfabética</option>
+</select>
+</div>
+<div class="flex items-center space-x-1 text-indigo-600 font-semibold text-[11px] uppercase tracking-wide cursor-pointer hover:text-indigo-800">
+<svg class="w-3.5 h-3.5 stroke-current" fill="none" stroke-width="2" viewBox="0 0 24 24">
+<polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+</svg>
+<span>Filtrar</span>
+</div>
+</section>
+<!-- END: FilterToolbar -->
+<!-- BEGIN: MainContentList -->
+<section class="flex-1 overflow-y-auto px-4 py-4 space-y-3.5 no-scrollbar pb-24" data-purpose="gaps-list">
+<!-- Card 1: Matemática (Crítica) -->
+<article class="bg-white rounded-2xl p-4 border border-rose-100 shadow-card relative transition active:scale-[0.99]" data-purpose="gap-card-critical">
+<!-- Header Card -->
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center space-x-2">
+<span class="w-2.5 h-2.5 rounded-full bg-[#DC2626] ring-4 ring-red-50"></span>
+<h2 class="text-base font-bold text-slate-900 tracking-tight">Matemática</h2>
+</div>
+<!-- Tag Crítica -->
+<span class="px-2.5 py-1 rounded-full text-xs font-bold bg-[#DC2626] text-white tracking-wide shadow-sm">
+            42% · Crítica
+          </span>
+</div>
+<!-- Barra de Progresso -->
+<div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden mt-2 mb-3">
+<div class="bg-[#DC2626] h-full rounded-full transition-all duration-500" style="width: 42%"></div>
+</div>
+<!-- Lista de Tópicos de Atenção -->
+<div class="bg-rose-50/50 rounded-xl p-3 border border-rose-100/60 mb-3">
+<p class="text-[12px] font-semibold text-slate-600 mb-1.5 flex items-center">
+<svg class="w-3.5 h-3.5 text-rose-500 mr-1.5 fill-current" viewBox="0 0 20 20">
+<path clip-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" fill-rule="evenodd"></path>
+</svg>
+            Conteúdos que precisam de mais atenção:
+          </p>
+<ul class="space-y-1 text-xs text-slate-700 pl-5 list-disc marker:text-rose-500 font-medium">
+<li>Funções (1º e 2º grau)</li>
+<li>Porcentagem &amp; Juros</li>
+<li>Probabilidade Condicional</li>
+</ul>
+</div>
+<!-- Ação Prioritária -->
+<div class="flex items-center justify-between pt-1 border-t border-slate-100">
+<button class="text-xs font-bold text-rose-600 hover:text-rose-800 flex items-center space-x-1 group" type="button">
+<span>Estudar tópico prioritário</span>
+<span class="text-sm transition-transform group-hover:translate-x-0.5">→</span>
+</button>
+<button class="text-xs font-semibold text-indigo-600 hover:text-indigo-800 flex items-center space-x-1" type="button">
+<span>Ver detalhes</span>
+<span class="text-sm">→</span>
+</button>
+</div>
+</article>
+<!-- Card 2: Física (Alta) -->
+<article class="bg-white rounded-2xl p-4 border border-amber-100 shadow-card transition active:scale-[0.99]" data-purpose="gap-card-high">
+<!-- Header Card -->
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center space-x-2">
+<span class="w-2.5 h-2.5 rounded-full bg-[#EA580C] ring-4 ring-orange-50"></span>
+<h2 class="text-base font-bold text-slate-900 tracking-tight">Física</h2>
+</div>
+<!-- Tag Alta -->
+<span class="px-2.5 py-1 rounded-full text-xs font-bold bg-[#F97316] text-white tracking-wide shadow-sm">
+            55% · Alta
+          </span>
+</div>
+<!-- Barra de Progresso -->
+<div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden mt-2 mb-3">
+<div class="bg-[#EA580C] h-full rounded-full transition-all duration-500" style="width: 55%"></div>
+</div>
+<!-- Tópicos -->
+<div class="bg-orange-50/40 rounded-xl p-3 border border-orange-100/50 mb-3">
+<p class="text-[12px] font-semibold text-slate-600 mb-1.5">Conteúdos que precisam de mais atenção:</p>
+<ul class="space-y-1 text-xs text-slate-700 pl-5 list-disc marker:text-orange-500 font-medium">
+<li>Cinemática Vetorial</li>
+<li>Óptica Geométrica (Refração)</li>
+</ul>
+</div>
+<!-- Ação -->
+<div class="flex items-center justify-end pt-1 border-t border-slate-100">
+<button class="text-xs font-semibold text-indigo-600 hover:text-indigo-800 flex items-center space-x-1" type="button">
+<span>Ver detalhes</span>
+<span class="text-sm">→</span>
+</button>
+</div>
+</article>
+<!-- Card 3: Linguagens (Média) -->
+<article class="bg-white rounded-2xl p-4 border border-yellow-100 shadow-card transition active:scale-[0.99]" data-purpose="gap-card-medium">
+<!-- Header Card -->
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center space-x-2">
+<span class="w-2.5 h-2.5 rounded-full bg-[#EAB308] ring-4 ring-yellow-50"></span>
+<h2 class="text-base font-bold text-slate-900 tracking-tight">Linguagens</h2>
+</div>
+<!-- Tag Média -->
+<span class="px-2.5 py-1 rounded-full text-xs font-bold bg-[#EAB308] text-slate-900 tracking-wide shadow-sm">
+            67% · Média
+          </span>
+</div>
+<!-- Barra de Progresso -->
+<div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden mt-2 mb-3">
+<div class="bg-[#EAB308] h-full rounded-full transition-all duration-500" style="width: 67%"></div>
+</div>
+<!-- Tópicos -->
+<div class="bg-yellow-50/40 rounded-xl p-3 border border-yellow-100/50 mb-3">
+<p class="text-[12px] font-semibold text-slate-600 mb-1.5">Conteúdos que precisam de mais atenção:</p>
+<ul class="space-y-1 text-xs text-slate-700 pl-5 list-disc marker:text-yellow-600 font-medium">
+<li>Interpretação Textual Crítica</li>
+<li>Figuras de Linguagem (Metáfora/Metonímia)</li>
+</ul>
+</div>
+<!-- Ação -->
+<div class="flex items-center justify-end pt-1 border-t border-slate-100">
+<button class="text-xs font-semibold text-indigo-600 hover:text-indigo-800 flex items-center space-x-1" type="button">
+<span>Ver detalhes</span>
+<span class="text-sm">→</span>
+</button>
+</div>
+</article>
+<!-- Card 4: História (Baixa) -->
+<article class="bg-white rounded-2xl p-4 border border-emerald-100 shadow-card transition active:scale-[0.99]" data-purpose="gap-card-low">
+<!-- Header Card -->
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center space-x-2">
+<span class="w-2.5 h-2.5 rounded-full bg-[#059669] ring-4 ring-emerald-50"></span>
+<h2 class="text-base font-bold text-slate-900 tracking-tight">História</h2>
+</div>
+<!-- Tag Baixa -->
+<span class="px-2.5 py-1 rounded-full text-xs font-bold bg-[#059669] text-white tracking-wide shadow-sm">
+            82% · Baixa
+          </span>
+</div>
+<!-- Barra de Progresso -->
+<div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden mt-2 mb-3">
+<div class="bg-[#059669] h-full rounded-full transition-all duration-500" style="width: 82%"></div>
+</div>
+<!-- Descritivo Leve -->
+<div class="px-1 mb-2">
+<p class="text-xs text-slate-500 font-normal">Bom rendimento consolidado. Revisão preventiva sugerida.</p>
+</div>
+<!-- Ação -->
+<div class="flex items-center justify-end pt-1 border-t border-slate-100">
+<button class="text-xs font-semibold text-indigo-600 hover:text-indigo-800 flex items-center space-x-1" type="button">
+<span>Ver detalhes</span>
+<span class="text-sm">→</span>
+</button>
+</div>
+</article>
+</section>
+<!-- END: MainContentList -->
+<!-- BEGIN: BottomTabBar -->
+<nav class="absolute bottom-0 inset-x-0 bg-white/95 backdrop-blur-md border-t border-slate-200/80 px-2 py-2.5 flex justify-around items-center z-30 shadow-nav" data-purpose="bottom-navigation">
+<!-- Item: Início -->
+<button class="flex flex-col items-center flex-1 py-1 text-slate-400 hover:text-slate-600 transition" type="button">
+<div class="w-2 h-2 rounded-full bg-slate-300 mb-1 opacity-70"></div>
+<span class="text-[10px] font-medium tracking-tight">Início</span>
+</button>
+<!-- Item: Desempenho (Ativo) -->
+<button class="flex flex-col items-center flex-1 py-1 text-indigo-700" type="button">
+<div class="w-2.5 h-2.5 rounded-full bg-indigo-700 ring-2 ring-indigo-200 mb-1"></div>
+<span class="text-[10px] font-bold tracking-tight">Desempenho</span>
+</button>
+<!-- Item: Cronograma -->
+<button class="flex flex-col items-center flex-1 py-1 text-slate-400 hover:text-slate-600 transition" type="button">
+<div class="w-2 h-2 rounded-full bg-slate-300 mb-1 opacity-70"></div>
+<span class="text-[10px] font-medium tracking-tight">Cronograma</span>
+</button>
+<!-- Item: Histórico -->
+<button class="flex flex-col items-center flex-1 py-1 text-slate-400 hover:text-slate-600 transition" type="button">
+<div class="w-2 h-2 rounded-full bg-slate-300 mb-1 opacity-70"></div>
+<span class="text-[10px] font-medium tracking-tight">Histórico</span>
+</button>
+<!-- Item: Perfil -->
+<button class="flex flex-col items-center flex-1 py-1 text-slate-400 hover:text-slate-600 transition" type="button">
+<div class="w-2 h-2 rounded-full bg-slate-300 mb-1 opacity-70"></div>
+<span class="text-[10px] font-medium tracking-tight">Perfil</span>
+</button>
+</nav>
+<!-- END: BottomTabBar -->
+<!-- BEGIN: iOSHomeIndicator -->
+<div class="absolute bottom-1 inset-x-0 flex justify-center pointer-events-none z-40">
+<div class="w-32 h-1 bg-slate-900/40 rounded-full"></div>
+</div>
+<!-- END: iOSHomeIndicator -->
+</main>
+<!-- END: MobileDeviceFrame -->
+</body></html>

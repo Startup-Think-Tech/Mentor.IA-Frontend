@@ -1,0 +1,218 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>Mentor.ia - Quiz Diagnóstico</title>
+<!-- Google Fonts: Inter & JetBrains Mono for clean math display -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#EEF2FF',
+              100: '#E0E7FF',
+              200: '#C7D2FE',
+              500: '#4361EE',
+              600: '#344CB7',
+              700: '#2A3C91',
+              800: '#1F2C6D',
+              900: '#141C48'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          },
+          boxShadow: {
+            'card-subtle': '0 4px 20px -2px rgba(28, 39, 76, 0.05)',
+            'nav-bar': '0 -4px 24px 0 rgba(15, 23, 42, 0.04)'
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="base-typography">
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      touch-action: manipulation;
+    }
+  </style>
+<style data-purpose="custom-touch-effects">
+    .touch-scale:active {
+      transform: scale(0.985);
+      transition: transform 0.1s ease;
+    }
+  </style>
+</head>
+<body class="bg-slate-100 flex justify-center items-center min-h-screen sm:py-6 select-none antialiased">
+<!-- BEGIN: MobileDeviceFrame -->
+<main class="w-full max-w-[414px] bg-white min-h-[896px] h-screen sm:h-[844px] sm:rounded-[44px] shadow-2xl flex flex-col justify-between overflow-hidden relative border border-slate-200/80">
+<!-- BEGIN: TopAppHeader -->
+<header class="w-full pt-3 pb-2 px-6 flex flex-col shrink-0">
+<!-- iOS Status Bar Simulation -->
+<div class="flex justify-between items-center w-full py-1 text-slate-800 text-xs font-semibold tracking-tight" data-purpose="status-bar">
+<span class="text-sm font-semibold tracking-normal pl-1">09:41</span>
+<div class="flex items-center space-x-1.5 pr-1">
+<!-- Cellular Signal -->
+<svg class="w-4 h-3.5 fill-current" viewBox="0 0 17 12">
+<rect height="3.5" rx="0.75" width="2.5" x="0" y="8.5"></rect>
+<rect height="6" rx="0.75" width="2.5" x="4.5" y="6"></rect>
+<rect height="9" rx="0.75" width="2.5" x="9" y="3"></rect>
+<rect height="12" rx="0.75" width="2.5" x="13.5" y="0"></rect>
+</svg>
+<!-- Wifi -->
+<svg class="w-4 h-3.5 fill-current" viewBox="0 0 16 12">
+<path d="M8 2.5a11.96 11.96 0 0 1 6.54 1.94.75.75 0 0 1-.02 1.22l-6.07 5.76a.65.65 0 0 1-.89 0L1.48 5.66a.75.75 0 0 1-.01-1.22A11.96 11.96 0 0 1 8 2.5Z"></path>
+</svg>
+<!-- Battery -->
+<div class="w-5 h-2.5 border border-slate-700 rounded-sm p-0.5 flex items-center">
+<div class="bg-slate-800 h-full w-full rounded-2xs"></div>
+</div>
+</div>
+</div>
+<!-- Main Navigation Bar -->
+<nav aria-label="Navegação do Quiz" class="flex items-center justify-between mt-3 mb-1">
+<button aria-label="Voltar tela anterior" class="w-9 h-9 rounded-full flex items-center justify-center -ml-1 text-slate-700 hover:bg-slate-100 transition active:scale-95" type="button">
+<svg class="w-6 h-6 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+<path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<h1 class="text-base font-bold text-slate-800 tracking-tight">Quiz Diagnóstico</h1>
+<!-- Pause / Exit Button -->
+<button aria-label="Pausar ou Sair" class="w-9 h-9 rounded-full flex items-center justify-center -mr-1 text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition active:scale-95" type="button">
+<svg class="w-5 h-5 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+<path d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</nav>
+<!-- Progress Tracking Component -->
+<div class="mt-3" data-purpose="quiz-progress">
+<div class="flex justify-between items-center text-xs font-semibold mb-1.5">
+<span class="text-slate-500 font-medium">Questão 08 de 30</span>
+<span class="text-brand-600 font-bold tracking-tight">27%</span>
+</div>
+<div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+<div class="bg-brand-600 h-full rounded-full transition-all duration-500 ease-out" style="width: 27%;"></div>
+</div>
+</div>
+</header>
+<!-- END: TopAppHeader -->
+<!-- BEGIN: QuizContentArea -->
+<section class="flex-1 overflow-y-auto px-6 py-4 flex flex-col justify-start space-y-5" data-purpose="question-container">
+<!-- Adaptive Subject Badge -->
+<div class="flex items-center space-x-2">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-50 text-brand-700 border border-indigo-100/80 shadow-xs">
+<!-- Sparkles/AI Icon -->
+<svg class="w-3.5 h-3.5 text-brand-600 fill-current" viewBox="0 0 24 24">
+<path d="M12 2L9.5 9.5L2 12L9.5 14.5L12 22L14.5 14.5L22 12L14.5 9.5L12 2Z"></path>
+</svg>
+          Matemática • Álgebra &amp; Funções
+        </span>
+</div>
+<!-- Question Title -->
+<h2 class="text-[1.28rem] leading-[1.38] font-bold text-slate-900 tracking-tight">
+        Qual das alternativas abaixo representa a lei de formação de uma função afim (1º grau)?
+      </h2>
+<!-- Equation Context Box -->
+<div class="bg-slate-50/90 border border-slate-200/75 rounded-2xl p-3.5 flex items-center justify-between" data-purpose="math-formula-callout">
+<div class="flex items-center space-x-3">
+<span class="flex h-8 w-8 rounded-xl bg-white shadow-xs border border-slate-200/60 items-center justify-center text-brand-600 font-mono text-sm font-bold">
+            f
+          </span>
+<div class="flex flex-col">
+<span class="text-2xs font-semibold uppercase tracking-wider text-slate-400">Relação Linear Fundamental</span>
+<span class="text-xs text-slate-700 font-medium">Considere coeficientes reais com <span class="font-mono font-semibold">a ≠ 0</span></span>
+</div>
+</div>
+<span class="text-xs bg-white text-slate-600 px-2 py-1 rounded-md border border-slate-200/60 font-mono font-medium">y = f(x)</span>
+</div>
+<!-- Multiple Choice Options Group -->
+<div aria-label="Opções de Resposta" class="space-y-3 pt-1" data-purpose="options-list" role="radiogroup">
+<!-- Option A (SELECTED STATE) -->
+<label class="touch-scale flex items-center justify-between p-4 rounded-2xl border-2 border-brand-600 bg-brand-600 text-white cursor-pointer shadow-sm transition duration-150 relative">
+<input checked="" class="sr-only" name="quiz_option" type="radio" value="A">
+<div class="flex items-center space-x-3.5">
+<!-- Selected Custom Radio Indicator -->
+<div class="w-5 h-5 rounded-full border-2 border-white flex items-center justify-center shrink-0 bg-transparent">
+<div class="w-2.5 h-2.5 bg-white rounded-full"></div>
+</div>
+<span class="font-medium text-[0.95rem] tracking-wide">
+<span class="font-bold mr-1.5 opacity-90">A)</span>
+<span class="font-mono tracking-tight font-semibold">f(x) = ax + b</span>
+</span>
+</div>
+<!-- Selection Icon Badge -->
+<svg class="w-5 h-5 text-white opacity-95 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</label>
+<!-- Option B (UNSELECTED) -->
+<label class="touch-scale flex items-center justify-between p-4 rounded-2xl border border-slate-200/80 bg-slate-50/70 hover:bg-slate-100/80 text-slate-800 cursor-pointer transition duration-150">
+<input class="sr-only" name="quiz_option" type="radio" value="B">
+<div class="flex items-center space-x-3.5">
+<div class="w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center shrink-0 bg-white"></div>
+<span class="font-medium text-[0.95rem] tracking-wide text-slate-700">
+<span class="font-bold mr-1.5 text-slate-500">B)</span>
+<span class="font-mono tracking-tight font-medium text-slate-800">f(x) = ax² + bx + c</span>
+</span>
+</div>
+</label>
+<!-- Option C (UNSELECTED) -->
+<label class="touch-scale flex items-center justify-between p-4 rounded-2xl border border-slate-200/80 bg-slate-50/70 hover:bg-slate-100/80 text-slate-800 cursor-pointer transition duration-150">
+<input class="sr-only" name="quiz_option" type="radio" value="C">
+<div class="flex items-center space-x-3.5">
+<div class="w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center shrink-0 bg-white"></div>
+<span class="font-medium text-[0.95rem] tracking-wide text-slate-700">
+<span class="font-bold mr-1.5 text-slate-500">C)</span>
+<span class="font-mono tracking-tight font-medium text-slate-800">f(x) = a/x + b</span>
+</span>
+</div>
+</label>
+<!-- Option D (UNSELECTED) -->
+<label class="touch-scale flex items-center justify-between p-4 rounded-2xl border border-slate-200/80 bg-slate-50/70 hover:bg-slate-100/80 text-slate-800 cursor-pointer transition duration-150">
+<input class="sr-only" name="quiz_option" type="radio" value="D">
+<div class="flex items-center space-x-3.5">
+<div class="w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center shrink-0 bg-white"></div>
+<span class="font-medium text-[0.95rem] tracking-wide text-slate-700">
+<span class="font-bold mr-1.5 text-slate-500">D)</span>
+<span class="font-mono tracking-tight font-medium text-slate-800">f(x) = √x + b</span>
+</span>
+</div>
+</label>
+</div>
+</section>
+<!-- END: QuizContentArea -->
+<!-- BEGIN: BottomNavigationDock -->
+<footer class="p-6 bg-white border-t border-slate-100 shadow-nav-bar shrink-0 flex flex-col space-y-3" data-purpose="quiz-actions-footer">
+<div class="grid grid-cols-12 gap-3 w-full">
+<!-- Secondary Button: Previous -->
+<button class="col-span-4 touch-scale flex items-center justify-center gap-1.5 py-3.5 px-3 rounded-2xl bg-slate-100 hover:bg-slate-200/80 text-slate-700 font-semibold text-sm transition" type="button">
+<svg class="w-4 h-4 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+<path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Voltar</span>
+</button>
+<!-- Primary Button: Confirm & Next -->
+<button class="col-span-8 touch-scale flex items-center justify-center gap-2 py-3.5 px-4 rounded-2xl bg-brand-600 hover:bg-brand-700 active:bg-brand-800 text-white font-bold text-sm tracking-wide shadow-lg shadow-brand-500/25 transition" type="button">
+<span>Confirmar e Avançar</span>
+<svg class="w-4 h-4 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+<!-- iOS Home Indicator Indicator -->
+<div aria-hidden="true" class="flex justify-center pt-1">
+<div class="w-32 h-1 bg-slate-300 rounded-full"></div>
+</div>
+</footer>
+<!-- END: BottomNavigationDock -->
+</main>
+<!-- END: MobileDeviceFrame -->
+</body></html>
