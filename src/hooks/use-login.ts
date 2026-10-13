@@ -4,17 +4,16 @@ import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
-import { setAuthToken } from "@/lib/auth/token";
-import { authApi, type LoginPayload } from "@/services/api/auth";
+import { authService } from "@/features/auth/services/auth.service";
+import type { LoginInput } from "@/features/auth/schemas/login.schema";
 
 export function useLogin() {
   const router = useRouter();
 
   return useMutation({
-    mutationFn: (payload: LoginPayload) => authApi.login(payload),
-    onSuccess: (data) => {
-      setAuthToken(data.token);
-      router.push("/dashboard");
+    mutationFn: (payload: LoginInput) => authService.login(payload),
+    onSuccess: () => {
+      router.push("/onboarding");
     },
     onError: (error) => {
       toast.error(

@@ -1,15 +1,12 @@
 import { z } from "zod";
 
-export const mockUserSchema = z.object({
-  name: z.string().trim().min(3),
-  email: z.string().trim().email(),
-  password: z.string().min(8),
-});
-
 export const authSessionSchema = z.object({
   user: z.object({
+    id: z.string().uuid(),
     name: z.string().trim().min(1),
     email: z.string().trim().email(),
+    papel: z.enum(["ALUNO", "ADMIN"]),
   }),
-  token: z.string().min(1),
+  accessToken: z.string().min(1),
+  refreshToken: z.string().min(1),
 });
