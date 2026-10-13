@@ -126,7 +126,7 @@ npm install
 Configure a URL da API:
 
 ```env
-NEXT_PUBLIC_API_URL="http://localhost:3001/api/v1"
+NEXT_PUBLIC_API_URL="http://localhost:3333/api/v1"
 NEXT_PUBLIC_ENEM_API_URL="https://api.enem.dev/v1"
 ```
 
@@ -144,9 +144,9 @@ docker compose up -d
 
 URLs locais:
 
-- App: `http://localhost:3000`
-- API: `http://localhost:3001/api/v1`
-- Swagger: `http://localhost:3001/api/docs`
+- App: `http://localhost:3002`
+- API: `http://localhost:3333/api/v1`
+- Swagger: `http://localhost:3333/api/docs`
 
 ## Jornada Do Usuário
 
@@ -282,13 +282,13 @@ Rotas sugeridas para App Router:
 Prefixo da API:
 
 ```text
-http://localhost:3001/api/v1
+http://localhost:3333/api/v1
 ```
 
 Documentação Swagger:
 
 ```text
-http://localhost:3001/api/docs
+http://localhost:3333/api/docs
 ```
 
 Health:

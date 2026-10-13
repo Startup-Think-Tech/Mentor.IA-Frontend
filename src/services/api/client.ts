@@ -1,6 +1,6 @@
 import { getAuthToken } from "@/lib/auth/token";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3001/api/v1";
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3333/api/v1";
 
 const STATUS_MESSAGES: Record<number, string> = {
   400: "Requisição inválida. Verifique os dados informados.",
