@@ -1,0 +1,29 @@
+{
+  "_mock": true,
+  "_aviso": "Exemplo ilustrativo; campos e formatos podem variar conforme a rota real.",
+  "rotas": [
+    {
+      "metodo": "GET",
+      "caminho": "/api/v1/dashboard/:visao"
+    }
+  ],
+  "exemplo_resposta": {
+    "visao": "resumo",
+    "aluno_id": "aluno-exemplo",
+    "filtros": {
+      "inicio": null,
+      "fim": null,
+      "disciplina_id": null
+    },
+    "dados": {
+      "desempenho": {
+        "percentual_medio": 72.5,
+        "total_registros": 8
+      },
+      "gaps_por_prioridade": [],
+      "sessoes_por_status": [],
+      "revisoes_por_status": [],
+      "cronograma_atual": null
+    }
+  }
+}

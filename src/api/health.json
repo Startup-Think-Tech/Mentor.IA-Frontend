@@ -1,0 +1,15 @@
+{
+  "_mock": true,
+  "_aviso": "Exemplo ilustrativo; campos e formatos podem variar conforme a rota real.",
+  "rotas": [
+    {
+      "metodo": "GET",
+      "caminho": "/api/v1/health"
+    }
+  ],
+  "exemplo_resposta": {
+    "status": "ok",
+    "database": "ok",
+    "timestamp": "2026-10-14T12:00:00.000Z"
+  }
+}

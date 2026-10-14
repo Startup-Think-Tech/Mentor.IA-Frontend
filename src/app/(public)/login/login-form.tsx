@@ -4,7 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { EyeIcon, EyeOffIcon, Loader2Icon } from "lucide-react";
 
-import { ZodForm } from "@/components/FormLayout/ZodForm";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
@@ -15,6 +16,10 @@ import { loginSchema, type LoginValues } from "./schema";
 
 export function LoginForm() {
   const login = useLogin();
+  const form = useForm<LoginValues>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: { email: "", password: "" },
+  });
   const [showPassword, setShowPassword] = useState(false);
 
   function handleSubmit(values: LoginValues) {
@@ -46,12 +51,10 @@ export function LoginForm() {
           <BrandHero />
         </div>
 
-        <ZodForm
-          onSubmit={handleSubmit}
-          schema={loginSchema}
+        <form
+          onSubmit={form.handleSubmit(handleSubmit)}
           className="w-full space-y-4"
         >
-          {(form) => (
             <>
               <Field data-invalid={Boolean(form.formState.errors.email)}>
                 <FieldLabel
@@ -122,8 +125,7 @@ export function LoginForm() {
                 </Button>
               </div>
             </>
-          )}
-        </ZodForm>
+        </form>
 
         <footer className="pt-6 pb-2 w-full flex items-center justify-between text-xs sm:text-sm font-medium">
           <Link
