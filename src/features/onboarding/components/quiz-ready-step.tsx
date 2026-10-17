@@ -19,7 +19,7 @@ export function QuizReadyStep() {
 
   function handleNext() {
     onboardingStorage.complete();
-    router.push("/diagnostico");
+    router.push("/quiz");
   }
 
   return (
@@ -64,7 +64,7 @@ export function QuizReadyStep() {
           onClick={handleNext}
           className="h-12 min-w-36 rounded-[24px] bg-[#2f55bd] text-white hover:bg-[#2448a8]"
         >
-          Próxima
+          Iniciar quiz
           <ArrowRight className="size-4" />
         </Button>
       </div>

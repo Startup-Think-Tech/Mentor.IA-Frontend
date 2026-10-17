@@ -1,6 +1,7 @@
 "use client";
 
 import { CalendarDays, LayoutDashboard, Target } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { useAuthSession } from "@/features/auth/context/auth-session.context";
@@ -73,14 +74,14 @@ export function ScheduleDashboard() {
               <CalendarDays className="size-5" />
               Cronograma
             </div>
-            <div className="flex items-center gap-3 px-4 py-3 text-white/75">
+            <Link href="/gaps" className="flex items-center gap-3 rounded-2xl px-4 py-3 text-white/75 transition hover:bg-white/15">
               <Target className="size-5" />
               Gaps
-            </div>
-            <div className="flex items-center gap-3 px-4 py-3 text-white/75">
+            </Link>
+            <Link href="/desempenho" className="flex items-center gap-3 rounded-2xl px-4 py-3 text-white/75 transition hover:bg-white/15">
               <LayoutDashboard className="size-5" />
               Desempenho
-            </div>
+            </Link>
           </nav>
 
           <div className="mt-auto rounded-3xl bg-white/10 p-5">
