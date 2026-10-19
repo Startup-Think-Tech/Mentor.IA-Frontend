@@ -22,12 +22,22 @@ export function useRequiredAuthSession(): RequiredAuthState {
     const timer = window.setTimeout(() => {
       const currentSession = authService.getValidSession();
 
-      if (!currentSession) {
+      // Permite visualizar telas privadas sem login apenas no servidor de desenvolvimento.
+      // Em produção, a autenticação continua obrigatória.
+      const devSession =
+        process.env.NODE_ENV === "development"
+          ? {
+              user: { name: "Estudante", email: "dev@mentor.ia" },
+              token: "dev-preview-only",
+            }
+          : null;
+
+      if (!currentSession && !devSession) {
         router.replace("/login");
         return;
       }
       setState({
-        session: currentSession,
+        session: currentSession ?? devSession,
         isLoading: false,
       });
     }, 0);

@@ -1,0 +1,27 @@
+{
+  "_mock": true,
+  "_aviso": "Exemplo ilustrativo; campos e formatos podem variar conforme a rota real.",
+  "rotas": [
+    {
+      "metodo": "GET",
+      "caminho": "/api/v1/alunos/me"
+    },
+    {
+      "metodo": "PATCH",
+      "caminho": "/api/v1/alunos/me"
+    },
+    {
+      "metodo": "GET",
+      "caminho": "/api/v1/alunos/me/disponibilidade"
+    },
+    {
+      "metodo": "PUT",
+      "caminho": "/api/v1/alunos/me/disponibilidade"
+    }
+  ],
+  "exemplo_resposta": {
+    "id": "aluno-exemplo",
+    "nome": "Aluno Exemplo",
+    "email": "aluno@exemplo.com"
+  }
+}

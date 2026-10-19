@@ -1,0 +1,26 @@
+{
+  "_mock": true,
+  "_aviso": "Exemplo ilustrativo; campos e formatos podem variar conforme a rota real.",
+  "rotas": [
+    {
+      "metodo": "GET",
+      "caminho": "/api/v1/gaps"
+    },
+    {
+      "metodo": "GET",
+      "caminho": "/api/v1/gaps/historico"
+    },
+    {
+      "metodo": "GET",
+      "caminho": "/api/v1/gaps/:id"
+    }
+  ],
+  "exemplo_resposta": [
+    {
+      "id": "gap-1",
+      "disciplina_id": "disc-1",
+      "prioridade": "ALTA",
+      "descricao": "Revisar equações"
+    }
+  ]
+}
