@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///home/suelen/Mentor.IA-Frontend/src/app/(public)/layout.tsx"],"sourcesContent":["export default function PublicLayout({\n  children,\n}: Readonly<{ children: React.ReactNode }>) {\n  return children;\n}\n"],"names":["PublicLayout","children"],"mappings":";;;;AAAe,SAASA,aAAa,EACnCC,QAAQ,EACgC;IACxC,OAAOA;AACT"}}]
-}

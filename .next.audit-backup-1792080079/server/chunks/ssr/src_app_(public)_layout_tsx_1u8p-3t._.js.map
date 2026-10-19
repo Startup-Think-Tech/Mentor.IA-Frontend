@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../../src/app/%28public%29/layout.tsx"],"sourcesContent":["export default function PublicLayout({\n  children,\n}: Readonly<{ children: React.ReactNode }>) {\n  return children;\n}\n"],"names":["PublicLayout","children"],"mappings":"wDAAe,SAASA,AAAa,UACnCC,CAAQ,CACgC,EACxC,OAAOA,CACT"}

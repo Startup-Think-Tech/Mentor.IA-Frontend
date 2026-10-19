@@ -1,3 +1,0 @@
-module.exports=[56005,a=>{"use strict";a.s(["PrivateRoute",()=>b]);let b=(0,a.i(11857).registerClientReference)(function(){throw Error("Attempted to call PrivateRoute() from the server but PrivateRoute is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.")},"[project]/src/features/auth/components/private-route.tsx","PrivateRoute")},33776,a=>{"use strict";var b=a.i(56005);a.n(b)},67364,a=>{"use strict";var b=a.i(7997),c=a.i(33776);a.s(["default",0,function({children:a}){return(0,b.jsx)(c.PrivateRoute,{children:a})}])},13261,function(a){a.n(a.i(67364))}];
-
-//# sourceMappingURL=src_0el7enj._.js.map
