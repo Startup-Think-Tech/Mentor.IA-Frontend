@@ -24,11 +24,17 @@ export function useRequiredAuthSession(): RequiredAuthState {
 
       // Permite visualizar telas privadas sem login apenas no servidor de desenvolvimento.
       // Em produção, a autenticação continua obrigatória.
-      const devSession =
+      const devSession: AuthSession | null =
         process.env.NODE_ENV === "development"
           ? {
-              user: { name: "Estudante", email: "dev@mentor.ia" },
-              token: "dev-preview-only",
+              user: {
+                id: "dev-user-id",
+                name: "Estudante",
+                email: "dev@mentor.ia",
+                papel: "ALUNO",
+              },
+              accessToken: "dev-preview-only",
+              refreshToken: "dev-preview-only",
             }
           : null;
 
