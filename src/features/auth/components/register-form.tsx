@@ -2,6 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 
 import { Checkbox } from "@/components/ui/checkbox";
@@ -16,6 +17,7 @@ import { authService } from "@/features/auth/services/auth.service";
 
 export function RegisterForm() {
   const router = useRouter();
+  const [serviceError, setServiceError] = useState<string | null>(null);
   const form = useForm<RegisterInput>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
@@ -28,14 +30,24 @@ export function RegisterForm() {
     mode: "onBlur",
   });
 
-  function onSubmit(values: RegisterInput) {
-    authService.registerMockUser({
-      name: values.name,
-      email: values.email,
-      password: values.password,
-    });
+  async function onSubmit(values: RegisterInput) {
+    setServiceError(null);
 
-    router.push("/login");
+    try {
+      await authService.register({
+        name: values.name,
+        email: values.email,
+        password: values.password,
+      });
+
+      router.push("/onboarding");
+    } catch (error) {
+      setServiceError(
+        error instanceof Error
+          ? error.message
+          : "Nao foi possivel criar sua conta.",
+      );
+    }
   }
 
   return (
@@ -110,6 +122,12 @@ export function RegisterForm() {
           </div>
         )}
       />
+
+      {serviceError && (
+        <p role="alert" className="text-sm font-medium text-destructive">
+          {serviceError}
+        </p>
+      )}
 
       <AuthSubmitButton disabled={form.formState.isSubmitting}>
         Criar minha conta

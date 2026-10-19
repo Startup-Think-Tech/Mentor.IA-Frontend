@@ -1,6 +1,5 @@
-import type { AuthSession, MockUser } from "@/features/auth/types/auth.types";
+import type { AuthSession } from "@/features/auth/types/auth.types";
 
-const MOCK_USER_KEY = "mentor.ia.mock-user";
 const SESSION_KEY = "mentor.ia.session";
 
 function getLocalStorage() {
@@ -27,14 +26,6 @@ function readJson(key: string): unknown | null {
 }
 
 export const authStorage = {
-  getMockUser(): unknown | null {
-    return readJson(MOCK_USER_KEY);
-  },
-
-  saveMockUser(user: MockUser) {
-    getLocalStorage()?.setItem(MOCK_USER_KEY, JSON.stringify(user));
-  },
-
   getSession(): unknown | null {
     return readJson(SESSION_KEY);
   },

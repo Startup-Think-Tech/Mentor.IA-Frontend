@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { EyeIcon, EyeOffIcon, Loader2Icon } from "lucide-react";
 
@@ -21,6 +23,10 @@ export function LoginForm() {
     defaultValues: { email: "", password: "" },
   });
   const [showPassword, setShowPassword] = useState(false);
+  const form = useForm<LoginValues>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: { email: "", password: "" },
+  });
 
   function handleSubmit(values: LoginValues) {
     login.mutate(values);

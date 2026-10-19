@@ -2,13 +2,15 @@
 
 import { CalendarDays, GraduationCap, ScrollText, Sparkles } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { studyDaysSchema } from "@/features/onboarding/schemas/study-days.schema";
 import { onboardingStorage } from "@/features/onboarding/storage/onboarding.storage";
+import { availabilityService } from "@/features/onboarding/services/availability.service";
 import {
   studyDays,
+  toStudyDays,
   type StudyDay,
 } from "@/features/onboarding/types/onboarding.types";
 import { cn } from "@/lib/utils";
@@ -19,6 +21,35 @@ export function StudyDaysStep() {
   const router = useRouter();
   const [selectedDays, setSelectedDays] = useState<StudyDay[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [loadError, setLoadError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  async function loadAvailability() {
+    setIsLoading(true);
+    setLoadError(null);
+
+    try {
+      const disponibilidades = await availabilityService.getMine();
+      const savedDays = toStudyDays(disponibilidades);
+      setSelectedDays(savedDays);
+
+      if (savedDays.length > 0) {
+        onboardingStorage.saveStudyDays(savedDays);
+      }
+    } catch (caughtError) {
+      setLoadError(
+        caughtError instanceof Error
+          ? caughtError.message
+          : "Nao foi possivel carregar sua disponibilidade.",
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    void loadAvailability();
+  }, []);
 
   function toggleDay(day: StudyDay) {
     setError(null);
@@ -46,6 +77,25 @@ export function StudyDaysStep() {
       <OnboardingProgress current={2} total={4} />
 
       <div className="py-8 text-center">
+        {isLoading && (
+          <p role="status" className="mb-6 text-sm font-medium text-[#52639c]">
+            Carregando sua disponibilidade...
+          </p>
+        )}
+
+        {loadError && (
+          <div role="alert" className="mx-auto mb-6 max-w-[430px] rounded-2xl bg-[#fff4f4] px-4 py-3 text-sm text-destructive">
+            <p>{loadError}</p>
+            <Button
+              type="button"
+              variant="link"
+              onClick={() => void loadAvailability()}
+              className="mt-1 h-auto p-0 text-destructive"
+            >
+              Tentar novamente
+            </Button>
+          </div>
+        )}
         <div className="relative mx-auto mb-8 flex h-[220px] max-w-[360px] items-center justify-center">
           <div className="absolute h-36 w-72 rounded-[45%] bg-[#eef2fb]" />
           <CalendarDays
@@ -73,6 +123,7 @@ export function StudyDaysStep() {
                 key={day}
                 type="button"
                 aria-pressed={selected}
+                disabled={isLoading}
                 onClick={() => toggleDay(day)}
                 className={cn(
                   "h-14 rounded-[28px] border-2 text-base font-bold transition-colors",
@@ -96,6 +147,7 @@ export function StudyDaysStep() {
       <Button
         type="button"
         onClick={handleContinue}
+        disabled={isLoading}
         className="h-16 w-full rounded-[32px] bg-[#2f55bd] text-lg font-bold text-white hover:bg-[#2448a8]"
       >
         proximo

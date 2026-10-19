@@ -1,10 +1,12 @@
-export type MockUser = {
+export type AuthUser = {
+  id: string;
   name: string;
   email: string;
-  password: string;
+  papel: "ALUNO" | "ADMIN";
 };
 
 export type AuthSession = {
-  user: Omit<MockUser, "password">;
-  token: string;
+  user: AuthUser;
+  accessToken: string;
+  refreshToken: string;
 };

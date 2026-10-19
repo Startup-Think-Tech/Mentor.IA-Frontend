@@ -1,116 +1,95 @@
-import type { z } from "zod";
+import { clearAuthToken, setAuthToken } from "@/lib/auth/token";
+import { authApi, type AuthResponse } from "@/services/api/auth";
 
-import { getMockUser, setMockUser } from "@/features/auth/mocks/auth.mock";
+import { authSessionSchema } from "@/features/auth/schemas/auth.schema";
 import {
-  authSessionSchema,
-  mockUserSchema,
-} from "@/features/auth/schemas/auth.schema";
-import { loginSchema, type LoginInput } from "@/features/auth/schemas/login.schema";
+  loginSchema,
+  type LoginInput,
+} from "@/features/auth/schemas/login.schema";
 import { authStorage } from "@/features/auth/storage/auth.storage";
-import type { AuthSession, MockUser } from "@/features/auth/types/auth.types";
+import type { AuthSession } from "@/features/auth/types/auth.types";
 
-function getPersistedMockUser(): MockUser | null {
-  const currentUser = getMockUser();
-
-  if (currentUser) {
-    return currentUser;
-  }
-
-  const parsedUser = mockUserSchema.safeParse(authStorage.getMockUser());
-  if (!parsedUser.success) {
-    return null;
-  }
-
-  setMockUser(parsedUser.data);
-  return parsedUser.data;
-}
+type RegisterInput = {
+  name: string;
+  email: string;
+  password: string;
+};
 
 async function login(input: LoginInput): Promise<AuthSession> {
-  const credentials = loginSchema.parse(input);
-  const user = getPersistedMockUser();
+  return saveAuthResponse(await authApi.login(loginSchema.parse(input)));
+}
 
-  await Promise.resolve();
+async function register(input: RegisterInput): Promise<AuthSession> {
+  return saveAuthResponse(
+    await authApi.register({
+      nome: input.name.trim(),
+      email: input.email.trim(),
+      password: input.password,
+    }),
+  );
+}
 
-  if (!user) {
-    throw new Error("Nenhum usuário cadastrado no mock.");
-  }
-
-  const emailMatches =
-    user.email.toLowerCase() === credentials.email.toLowerCase();
-  const passwordMatches = user.password === credentials.password;
-  if (!emailMatches || !passwordMatches) {
-    throw new Error("E-mail ou senha inválidos.");
-  }
-
+function saveAuthResponse(response: AuthResponse): AuthSession {
   const session = authSessionSchema.parse({
-    user: { name: user.name, email: user.email },
-    token: "mock-token",
+    accessToken: response.accessToken,
+    refreshToken: response.refreshToken,
+    user: {
+      id: response.user.id,
+      name: response.user.nome,
+      email: response.user.email,
+      papel: response.user.papel,
+    },
   });
 
+  setAuthToken(session.accessToken);
   authStorage.saveSession(session);
   return session;
 }
 
-function registerMockUser(user: MockUser) {
-  const validatedUser = mockUserSchema.parse(user);
-
-  setMockUser(validatedUser);
-  authStorage.saveMockUser(validatedUser);
-  authStorage.clearSession();
-}
 function getValidSession(): AuthSession | null {
-  const user = getPersistedMockUser();
   const sessionResult = authSessionSchema.safeParse(authStorage.getSession());
 
-  if (!user || !sessionResult.success) {
-    authStorage.clearSession();
+  if (!sessionResult.success || isAccessTokenExpired(sessionResult.data.accessToken)) {
+    clearSession();
     return null;
   }
 
-  const session = sessionResult.data;
-  const belongsToUser =
-    session.user.email.toLowerCase() === user.email.toLowerCase();
-
-  if (!belongsToUser) {
-    authStorage.clearSession();
-    return null;
-  }
-
-  return session;
+  setAuthToken(sessionResult.data.accessToken);
+  return sessionResult.data;
 }
 
-function logout() {
+async function logout() {
+  try {
+    await authApi.logout();
+  } finally {
+    clearSession();
+  }
+}
+
+function clearSession() {
+  clearAuthToken();
   authStorage.clearSession();
 }
-async function loginWithBackend(input: LoginInput): Promise<AuthSession> {
-  const credentials = loginSchema.parse(input);
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
-  if (!apiUrl) {
-    throw new Error("NEXT_PUBLIC_API_URL não configurada.");
+function isAccessTokenExpired(token: string): boolean {
+  try {
+    const payload = token.split(".")[1];
+    if (!payload) return true;
+
+    const decoded = JSON.parse(
+      atob(payload.replace(/-/g, "+").replace(/_/g, "/")),
+    ) as { exp?: unknown };
+
+    return typeof decoded.exp !== "number" || decoded.exp * 1000 <= Date.now();
+  } catch {
+    return true;
   }
-
-  const response = await fetch(`${apiUrl}/auth/login`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(credentials),
-  });
-
-  if (!response.ok) {
-    throw new Error("E-mail ou senha inválidos.");
-  }
-  const session = authSessionSchema.parse(await response.json());
-  authStorage.saveSession(session);
-
-  return session;
 }
 
 export const authService = {
   login,
-  loginWithBackend,
-  registerMockUser,
+  register,
   getValidSession,
   logout,
+  clearSession,
 };
-
-export type AuthSessionSchema = z.infer<typeof authSessionSchema>;
