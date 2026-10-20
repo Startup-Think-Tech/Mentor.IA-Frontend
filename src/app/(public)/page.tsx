@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
 
-import { LandingNav } from "@/features/landing/components/landing-nav";
-import { LandingHero } from "@/features/landing/components/landing-hero";
-import { LandingPainPoints } from "@/features/landing/components/landing-pain-points";
-import { LandingHowItWorks } from "@/features/landing/components/landing-how-it-works";
-import { LandingInteractiveSimulator } from "@/features/landing/components/landing-interactive-simulator";
-import { LandingAiShowcase } from "@/features/landing/components/landing-ai-showcase";
-import { LandingComparison } from "@/features/landing/components/landing-comparison";
-import { LandingTestimonials } from "@/features/landing/components/landing-testimonials";
-import { LandingFaq } from "@/features/landing/components/landing-faq";
-import { LandingCta } from "@/features/landing/components/landing-cta";
-import { LandingFooter } from "@/features/landing/components/landing-footer";
-import { BackToTop } from "@/features/landing/components/back-to-top";
+import { LandingNav } from "@/app/(public)/components/landing-nav";
+import { LandingHero } from "@/app/(public)/components/landing-hero";
+import { LandingPainPoints } from "@/app/(public)/components/landing-pain-points";
+import { LandingHowItWorks } from "@/app/(public)/components/landing-how-it-works";
+import { LandingInteractiveSimulator } from "@/app/(public)/components/landing-interactive-simulator";
+import { LandingAiShowcase } from "@/app/(public)/components/landing-ai-showcase";
+import { LandingComparison } from "@/app/(public)/components/landing-comparison";
+import { LandingTestimonials } from "@/app/(public)/components/landing-testimonials";
+import { LandingFaq } from "@/app/(public)/components/landing-faq";
+import { LandingCta } from "@/app/(public)/components/landing-cta";
+import { LandingFooter } from "@/app/(public)/components/landing-footer";
+import { BackToTop } from "@/app/(public)/components/back-to-top";
 
 export const metadata: Metadata = {
   title: "Mentor.ia | Estudos Inteligentes para o Ensino Médio & ENEM",

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { StudyDaysEntry } from "@/features/onboarding/components/study-days-entry";
+import { StudyDaysEntry } from "@/app/(private)/onboarding/components/study-days-entry";
 
 export const metadata: Metadata = {
   title: "Dias disponiveis | Mentor.ia",

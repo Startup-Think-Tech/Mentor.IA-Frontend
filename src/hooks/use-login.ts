@@ -4,8 +4,8 @@ import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
-import { authService } from "@/features/auth/services/auth.service";
-import type { LoginInput } from "@/features/auth/schemas/login.schema";
+import { authService } from "@/app/_shared/auth/services/auth.service";
+import type { LoginInput } from "@/app/_shared/auth/schemas/login.schema";
 
 export function useLogin() {
   const router = useRouter();
