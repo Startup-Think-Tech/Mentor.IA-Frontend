@@ -4,7 +4,7 @@ import { CalendarDays, LayoutDashboard, Target } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-import { useAuthSession } from "@/components/auth/auth-session.context";
+import { useAuthSession } from "@/context/auth-session.context";
 import type { DiagnosticResults } from "@/lib/diagnostic/schemas/diagnostic-results.schema";
 import { diagnosticStorage } from "@/lib/diagnostic/diagnostic.storage";
 import type { OnboardingDraft } from "@/app/(private)/onboarding/types/onboarding.types";

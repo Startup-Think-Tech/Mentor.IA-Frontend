@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
 
-import { LandingNav } from "@/app/(public)/components/landing-nav";
-import { LandingHero } from "@/app/(public)/components/landing-hero";
-import { LandingPainPoints } from "@/app/(public)/components/landing-pain-points";
-import { LandingHowItWorks } from "@/app/(public)/components/landing-how-it-works";
-import { LandingInteractiveSimulator } from "@/app/(public)/components/landing-interactive-simulator";
-import { LandingAiShowcase } from "@/app/(public)/components/landing-ai-showcase";
-import { LandingComparison } from "@/app/(public)/components/landing-comparison";
-import { LandingTestimonials } from "@/app/(public)/components/landing-testimonials";
-import { LandingFaq } from "@/app/(public)/components/landing-faq";
-import { LandingCta } from "@/app/(public)/components/landing-cta";
-import { LandingFooter } from "@/app/(public)/components/landing-footer";
-import { BackToTop } from "@/app/(public)/components/back-to-top";
+import { LandingNav } from "@/components/landing/landing-nav";
+import { LandingHero } from "@/components/landing/landing-hero";
+import { LandingPainPoints } from "@/components/landing/landing-pain-points";
+import { LandingHowItWorks } from "@/components/landing/landing-how-it-works";
+import { LandingInteractiveSimulator } from "@/components/landing/landing-interactive-simulator";
+import { LandingAiShowcase } from "@/components/landing/landing-ai-showcase";
+import { LandingComparison } from "@/components/landing/landing-comparison";
+import { LandingTestimonials } from "@/components/landing/landing-testimonials";
+import { LandingFaq } from "@/components/landing/landing-faq";
+import { LandingCta } from "@/components/landing/landing-cta";
+import { LandingFooter } from "@/components/landing/landing-footer";
+import { BackToTop } from "@/components/landing/back-to-top";
 
 export const metadata: Metadata = {
   title: "Mentor.ia | Estudos Inteligentes para o Ensino Médio & ENEM",

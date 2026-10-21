@@ -7,13 +7,13 @@ import { Controller, useForm } from "react-hook-form";
 
 import { Checkbox } from "@/components/ui/checkbox";
 import { FieldError } from "@/components/ui/field";
-import { AuthSubmitButton } from "@/components/auth/form/auth-submit-button";
-import { AuthTextField } from "@/components/auth/form/auth-text-field";
 import {
   registerSchema,
   type RegisterInput,
 } from "@/lib/auth/schemas/register.schema";
 import { authService } from "@/services/auth.service";
+import { AuthTextField } from "@/components/auth/form/auth-text-field";
+import { AuthSubmitButton } from "@/components/auth/form/auth-submit-button";
 
 export function RegisterForm() {
   const router = useRouter();

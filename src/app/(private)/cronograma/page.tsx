@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { ScheduleDashboard } from "@/components/schedule/schedule-dashboard";
+import { ScheduleDashboard } from "@/app/(private)/cronograma/components/schedule-dashboard";
 
 export const metadata: Metadata = {
   title: "Cronograma | Mentor.ia",

@@ -2,7 +2,7 @@
 
 import { useRequiredAuthSession } from "@/hooks/use-required-auth-session";
 
-import { AuthSessionProvider } from "@/components/auth/auth-session.context";
+import { AuthSessionProvider } from "@/context/auth-session.context";
 
 export function PrivateRoute({ children }: { children: React.ReactNode }) {
   const { session, isLoading } = useRequiredAuthSession();

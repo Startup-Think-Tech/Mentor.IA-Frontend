@@ -1,6 +1,6 @@
 "use client";
 
-import { useAuthSession } from "@/components/auth/auth-session.context";
+import { useAuthSession } from "@/context/auth-session.context";
 
 import { OnboardingShell } from "./onboarding-shell";
 import { WelcomeStep } from "./welcome-step";

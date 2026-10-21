@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-import { RegisterForm } from "@/components/auth/register-form";
+import { RegisterForm } from "@/app/(public)/cadastro/components/register-form";
 
 export const metadata: Metadata = {
   title: "Cadastro | Mentor.ia",

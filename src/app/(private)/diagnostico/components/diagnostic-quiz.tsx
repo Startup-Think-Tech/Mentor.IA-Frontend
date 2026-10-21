@@ -7,7 +7,7 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import {
   diagnosticSubjectLabels,
 } from "@/constants/diagnostic-questions";
-import { useDiagnosticQuiz } from "@/hooks/use-diagnostic-quiz";
+import { useDiagnosticQuiz } from "@/app/(private)/diagnostico/hooks/use-diagnostic-quiz";
 import { diagnosticSubjects } from "@/lib/diagnostic/types/diagnostic.types";
 import { cn } from "@/lib/utils";
 

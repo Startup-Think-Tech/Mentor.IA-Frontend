@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-import { LoginForm } from "@/components/auth/login-form";
+import { LoginForm } from "@/app/(public)/login/components/login-form";
 
 export const metadata: Metadata = {
   title: "Login | Mentor.ia",
