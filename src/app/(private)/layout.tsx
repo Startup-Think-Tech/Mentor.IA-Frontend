@@ -1,5 +1,5 @@
-import { LogoutButton } from "@/features/auth/components/logout-button";
-import { PrivateRoute } from "@/features/auth/components/private-route";
+import { LogoutButton } from "@/components/auth/logout-button";
+import { PrivateRoute } from "@/components/auth/private-route";
 
 export default function PrivateLayout({
   children,

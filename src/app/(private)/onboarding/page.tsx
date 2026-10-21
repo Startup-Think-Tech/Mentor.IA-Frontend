@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { OnboardingEntry } from "@/features/onboarding/components/onboarding-entry";
+import { OnboardingEntry } from "@/app/(private)/onboarding/components/onboarding-entry";
 
 export const metadata: Metadata = {
   title: "Onboarding | Mentor.ia",

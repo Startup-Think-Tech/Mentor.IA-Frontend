@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { DiagnosticQuiz } from "@/features/diagnostic/components/diagnostic-quiz";
+import { DiagnosticQuiz } from "@/app/(private)/diagnostico/components/diagnostic-quiz";
 
 export const metadata: Metadata = {
   title: "Diagnóstico | Mentor.ia",

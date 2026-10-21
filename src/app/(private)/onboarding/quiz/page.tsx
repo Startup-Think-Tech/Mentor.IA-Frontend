@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { QuizReadyEntry } from "@/features/onboarding/components/quiz-ready-entry";
+import { QuizReadyEntry } from "@/app/(private)/onboarding/components/quiz-ready-entry";
 
 export const metadata: Metadata = {
   title: "Preparação para o quiz | Mentor.ia",
