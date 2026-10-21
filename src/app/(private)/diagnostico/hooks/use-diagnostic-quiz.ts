@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 import { diagnosticQuestionRefs } from "@/constants/diagnostic-questions";
 import type { DiagnosticResults } from "@/lib/diagnostic/schemas/diagnostic-results.schema";
-import { enemService } from "@/services/enem.service";
+import { enemService } from "@/app/(private)/diagnostico/services/enem.service";
 import { diagnosticStorage } from "@/lib/diagnostic/diagnostic.storage";
 import type { DiagnosticQuestion } from "@/lib/diagnostic/types/diagnostic.types";
 
