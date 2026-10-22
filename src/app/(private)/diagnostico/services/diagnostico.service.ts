@@ -1,5 +1,5 @@
 import { ApiError, apiFetch } from "@/services/api/client";
-import type { DiagnosticQuestionRef } from "@/app/(private)/diagnostico/types/diagnostic.types";
+import type { DiagnosticQuestion } from "@/app/(private)/diagnostico/types/diagnostic.types";
 import type { Diagnostico, DiagnosticoResultado } from "@/app/(private)/diagnostico/types/diagnostico.types";
 
 async function getOrCreateCurrent(): Promise<Diagnostico> {
@@ -14,18 +14,17 @@ async function getOrCreateCurrent(): Promise<Diagnostico> {
 export const diagnosticoService = {
   getOrCreateCurrent,
 
-  getQuestions(id: string): Promise<DiagnosticQuestionRef[]> {
-    return apiFetch<DiagnosticQuestionRef[]>(`/diagnosticos/${id}/questoes`);
+  getQuestions(id: string): Promise<DiagnosticQuestion[]> {
+    return apiFetch<DiagnosticQuestion[]>(`/diagnosticos/${id}/questoes`);
   },
 
-  registerAnswer(id: string, questionId: string, alternative: string, isCorrect: boolean) {
+  registerAnswer(id: string, questionId: string, alternative: string) {
     return apiFetch(`/diagnosticos/${id}/respostas`, {
       method: "POST",
       body: {
         respostas: [{
           diagnosticoQuestaoId: questionId,
           alternativaMarcada: alternative,
-          acertoInformado: isCorrect,
         }],
       },
     });

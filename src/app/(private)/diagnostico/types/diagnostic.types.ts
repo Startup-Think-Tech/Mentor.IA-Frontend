@@ -7,18 +7,9 @@ export const diagnosticAreas = [
 
 export type DiagnosticArea = (typeof diagnosticAreas)[number];
 
-export type DiagnosticQuestionRef = {
-  id: string;
-  year: number;
-  index: number;
-  language: string;
-  discipline: DiagnosticArea;
-};
-
 export type DiagnosticAlternative = {
   letter: string;
   text: string;
-  isCorrect: boolean;
 };
 
 export type DiagnosticQuestion = {
@@ -29,6 +20,5 @@ export type DiagnosticQuestion = {
   discipline: DiagnosticArea;
   context: string | null;
   question: string;
-  correctAlternative: string;
   alternatives: DiagnosticAlternative[];
 };
