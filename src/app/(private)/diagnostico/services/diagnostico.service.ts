@@ -2,13 +2,34 @@ import { ApiError, apiFetch } from "@/services/api/client";
 import type { DiagnosticQuestion } from "@/app/(private)/diagnostico/types/diagnostic.types";
 import type { Diagnostico, DiagnosticoResultado } from "@/app/(private)/diagnostico/types/diagnostico.types";
 
-async function getOrCreateCurrent(): Promise<Diagnostico> {
+let currentDiagnosticRequest: Promise<Diagnostico> | null = null;
+
+async function requestCurrentDiagnostic(): Promise<Diagnostico> {
   try {
     return await apiFetch<Diagnostico>("/diagnosticos/atual");
   } catch (error) {
     if (!(error instanceof ApiError) || error.status !== 404) throw error;
-    return apiFetch<Diagnostico>("/diagnosticos", { method: "POST" });
+
+    try {
+      return await apiFetch<Diagnostico>("/diagnosticos", { method: "POST" });
+    } catch (createError) {
+      if (!(createError instanceof ApiError) || createError.status !== 409) {
+        throw createError;
+      }
+
+      return apiFetch<Diagnostico>("/diagnosticos/atual");
+    }
   }
+}
+
+function getOrCreateCurrent(): Promise<Diagnostico> {
+  if (!currentDiagnosticRequest) {
+    currentDiagnosticRequest = requestCurrentDiagnostic().finally(() => {
+      currentDiagnosticRequest = null;
+    });
+  }
+
+  return currentDiagnosticRequest;
 }
 
 export const diagnosticoService = {

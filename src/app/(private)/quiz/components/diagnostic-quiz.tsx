@@ -1,15 +1,25 @@
 "use client";
 
 import { Loader2 } from "lucide-react";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 import { useDiagnosticQuiz } from "@/app/(private)/diagnostico/hooks/use-diagnostic-quiz";
 
 import { DiagnosticQuizQuestion } from "./diagnostic-quiz-question";
-import { DiagnosticQuizResult } from "./diagnostic-quiz-result";
 import { DiagnosticQuizReview } from "./diagnostic-quiz-review";
+import { DiagnosticQuizValidation } from "./diagnostic-quiz-validation";
 
 export function DiagnosticQuiz() {
   const quiz = useDiagnosticQuiz();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!quiz.isComplete) return;
+
+    const redirectTimer = setTimeout(() => router.replace("/dashboard"), 700);
+    return () => clearTimeout(redirectTimer);
+  }, [quiz.isComplete, router]);
 
   if (quiz.isLoading) {
     return (
@@ -21,8 +31,22 @@ export function DiagnosticQuiz() {
 
   if (quiz.isComplete) {
     return (
-      <main className="min-h-dvh bg-[#f6f7fb] px-6 py-12">
-        <DiagnosticQuizResult result={quiz.result} />
+      <main className="grid min-h-dvh place-items-center bg-[#f6f7fb] px-4 py-8 sm:px-6">
+        <DiagnosticQuizValidation
+          totalQuestions={quiz.questions.length}
+          phase="complete"
+        />
+      </main>
+    );
+  }
+
+  if (quiz.isValidating) {
+    return (
+      <main className="grid min-h-dvh place-items-center bg-[#f6f7fb] px-4 py-8 sm:px-6">
+        <DiagnosticQuizValidation
+          totalQuestions={quiz.questions.length}
+          phase={quiz.validationPhase}
+        />
       </main>
     );
   }

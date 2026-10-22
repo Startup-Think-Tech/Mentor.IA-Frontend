@@ -35,4 +35,6 @@ export type DiagnosticoQuizState = {
   error: string | null;
   isComplete: boolean;
   isReviewing: boolean;
+  isValidating: boolean;
+  validationPhase: "answers" | "result" | null;
 };

@@ -24,6 +24,8 @@ const initialState: DiagnosticoQuizState = {
   error: null,
   isComplete: false,
   isReviewing: false,
+  isValidating: false,
+  validationPhase: null,
 };
 
 function storageKey(diagnosticoId: string) {
@@ -253,7 +255,13 @@ export function useDiagnosticQuiz() {
     }
 
     isSubmittingRef.current = true;
-    setState((current) => ({ ...current, isSubmitting: true, error: null }));
+    setState((current) => ({
+      ...current,
+      isSubmitting: true,
+      isValidating: true,
+      validationPhase: "answers",
+      error: null,
+    }));
 
     try {
       await diagnosticoService.registerAnswers(
@@ -263,6 +271,10 @@ export function useDiagnosticQuiz() {
           alternative: answers[question.id],
         })),
       );
+      setState((current) => ({
+        ...current,
+        validationPhase: "result",
+      }));
       const result = await diagnosticoService.finalize(diagnosticoId);
 
       setState((current) => ({
@@ -271,11 +283,15 @@ export function useDiagnosticQuiz() {
         isComplete: true,
         isReviewing: false,
         isSubmitting: false,
+        isValidating: false,
+        validationPhase: null,
       }));
     } catch (error) {
       setState((current) => ({
         ...current,
         isSubmitting: false,
+        isValidating: false,
+        validationPhase: null,
         error: error instanceof Error ? error.message : "Não foi possível salvar sua resposta.",
       }));
     } finally {
