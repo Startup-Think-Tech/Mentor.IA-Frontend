@@ -18,14 +18,17 @@ export const diagnosticoService = {
     return apiFetch<DiagnosticQuestion[]>(`/diagnosticos/${id}/questoes`);
   },
 
-  registerAnswer(id: string, questionId: string, alternative: string) {
+  registerAnswers(
+    id: string,
+    answers: Array<{ questionId: string; alternative: string }>,
+  ) {
     return apiFetch(`/diagnosticos/${id}/respostas`, {
       method: "POST",
       body: {
-        respostas: [{
+        respostas: answers.map(({ questionId, alternative }) => ({
           diagnosticoQuestaoId: questionId,
           alternativaMarcada: alternative,
-        }],
+        })),
       },
     });
   },

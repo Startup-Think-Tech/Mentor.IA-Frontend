@@ -27,11 +27,12 @@ export type DiagnosticoResultado = {
 export type DiagnosticoQuizState = {
   questions: import("./diagnostic.types").DiagnosticQuestion[];
   currentIndex: number;
-  selectedAlternative: string | null;
+  answers: Record<string, string>;
   diagnosticoId: string | null;
   result: DiagnosticoResultado | null;
   isLoading: boolean;
   isSubmitting: boolean;
   error: string | null;
   isComplete: boolean;
+  isReviewing: boolean;
 };

@@ -8,13 +8,14 @@ import type { DiagnosticoQuizState } from "@/app/(private)/diagnostico/types/dia
 const initialState: DiagnosticoQuizState = {
   questions: [],
   currentIndex: 0,
-  selectedAlternative: null,
+  answers: {},
   diagnosticoId: null,
   result: null,
   isLoading: true,
   isSubmitting: false,
   error: null,
   isComplete: false,
+  isReviewing: false,
 };
 
 export function useDiagnosticQuiz() {
@@ -63,22 +64,59 @@ export function useDiagnosticQuiz() {
   }, []);
 
   const currentQuestion = state.questions[state.currentIndex] ?? null;
+  const selectedAlternative = currentQuestion
+    ? state.answers[currentQuestion.id] ?? null
+    : null;
 
   function selectAlternative(letter: string) {
+    if (!currentQuestion) return;
+
     setState((current) => ({
       ...current,
-      selectedAlternative: letter,
+      answers: { ...current.answers, [currentQuestion.id]: letter },
     }));
   }
 
-  async function submitCurrentAnswer() {
-    const question = state.questions[state.currentIndex];
-    const selected = state.selectedAlternative;
+  function goToPreviousQuestion() {
+    setState((current) => ({
+      ...current,
+      currentIndex: Math.max(0, current.currentIndex - 1),
+      error: null,
+    }));
+  }
+
+  function goToNextQuestion() {
+    if (!selectedAlternative) return;
+
+    setState((current) => {
+      const isLastQuestion = current.currentIndex === current.questions.length - 1;
+
+      return {
+        ...current,
+        currentIndex: isLastQuestion
+          ? current.currentIndex
+          : current.currentIndex + 1,
+        isReviewing: isLastQuestion,
+        error: null,
+      };
+    });
+  }
+
+  function goToQuestion(index: number) {
+    setState((current) => ({
+      ...current,
+      currentIndex: index,
+      isReviewing: false,
+      error: null,
+    }));
+  }
+
+  async function submitAnswers() {
+    const { questions, answers, diagnosticoId } = state;
 
     if (
-      !question ||
-      !selected ||
-      !state.diagnosticoId ||
+      !diagnosticoId ||
+      questions.some((question) => !answers[question.id]) ||
       isSubmittingRef.current
     ) {
       return;
@@ -86,24 +124,22 @@ export function useDiagnosticQuiz() {
 
     isSubmittingRef.current = true;
     setState((current) => ({ ...current, isSubmitting: true, error: null }));
-    const isLastQuestion = state.currentIndex === state.questions.length - 1;
 
     try {
-      await diagnosticoService.registerAnswer(
-        state.diagnosticoId,
-        question.id,
-        selected,
+      await diagnosticoService.registerAnswers(
+        diagnosticoId,
+        questions.map((question) => ({
+          questionId: question.id,
+          alternative: answers[question.id],
+        })),
       );
-      const result = isLastQuestion
-        ? await diagnosticoService.finalize(state.diagnosticoId)
-        : null;
+      const result = await diagnosticoService.finalize(diagnosticoId);
 
       setState((current) => ({
         ...current,
         result,
-        selectedAlternative: null,
-        currentIndex: isLastQuestion ? current.currentIndex : current.currentIndex + 1,
-        isComplete: isLastQuestion,
+        isComplete: true,
+        isReviewing: false,
         isSubmitting: false,
       }));
     } catch (error) {
@@ -120,7 +156,11 @@ export function useDiagnosticQuiz() {
   return {
     ...state,
     currentQuestion,
+    selectedAlternative,
     selectAlternative,
-    submitCurrentAnswer,
+    goToPreviousQuestion,
+    goToNextQuestion,
+    goToQuestion,
+    submitAnswers,
   };
 }
