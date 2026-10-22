@@ -2,12 +2,13 @@ import { clearAuthToken, setAuthToken } from "@/lib/auth/token";
 import { authApi, type AuthResponse } from "@/services/api/auth";
 
 import { authSessionSchema } from "@/lib/auth/schemas/auth.schema";
-import {
-  loginSchema,
-  type LoginInput,
-} from "@/lib/auth/schemas/login.schema";
 import { authStorage } from "@/lib/auth/auth.storage";
 import type { AuthSession } from "@/lib/auth/types/auth.types";
+
+type LoginInput = {
+  email: string;
+  password: string;
+};
 
 type RegisterInput = {
   name: string;
@@ -16,7 +17,7 @@ type RegisterInput = {
 };
 
 async function login(input: LoginInput): Promise<AuthSession> {
-  return saveAuthResponse(await authApi.login(loginSchema.parse(input)));
+  return saveAuthResponse(await authApi.login(input));
 }
 
 async function register(input: RegisterInput): Promise<AuthSession> {

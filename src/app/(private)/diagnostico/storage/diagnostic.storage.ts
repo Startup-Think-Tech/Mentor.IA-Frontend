@@ -1,5 +1,5 @@
-import { diagnosticResultsSchema } from "@/lib/diagnostic/schemas/diagnostic-results.schema";
-import type { DiagnosticSubject } from "@/lib/diagnostic/types/diagnostic.types";
+import { diagnosticResultsSchema } from "@/app/(private)/diagnostico/schemas/diagnostic-results.schema";
+import type { DiagnosticSubject } from "@/app/(private)/diagnostico/types/diagnostic.types";
 
 const DIAGNOSTIC_RESULTS_KEY = "mentor.ia.diagnostic-results";
 
@@ -36,10 +36,7 @@ export const diagnosticStorage = {
       [subject]: isCorrect,
     });
 
-    getStorage()?.setItem(
-      DIAGNOSTIC_RESULTS_KEY,
-      JSON.stringify(nextResults),
-    );
+    getStorage()?.setItem(DIAGNOSTIC_RESULTS_KEY, JSON.stringify(nextResults));
 
     return nextResults;
   },

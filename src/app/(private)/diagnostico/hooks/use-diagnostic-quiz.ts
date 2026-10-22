@@ -2,11 +2,11 @@
 
 import { useEffect, useState } from "react";
 
-import { diagnosticQuestionRefs } from "@/constants/diagnostic-questions";
-import type { DiagnosticResults } from "@/lib/diagnostic/schemas/diagnostic-results.schema";
+import { diagnosticQuestionRefs } from "@/app/(private)/diagnostico/constants/diagnostic-questions";
+import type { DiagnosticResults } from "@/app/(private)/diagnostico/schemas/diagnostic-results.schema";
 import { enemService } from "@/app/(private)/diagnostico/services/enem.service";
-import { diagnosticStorage } from "@/lib/diagnostic/diagnostic.storage";
-import type { DiagnosticQuestion } from "@/lib/diagnostic/types/diagnostic.types";
+import { diagnosticStorage } from "@/app/(private)/diagnostico/storage/diagnostic.storage";
+import type { DiagnosticQuestion } from "@/app/(private)/diagnostico/types/diagnostic.types";
 
 type DiagnosticQuizState = {
   questions: DiagnosticQuestion[];
@@ -81,10 +81,7 @@ export function useDiagnosticQuiz() {
     }
 
     const isCorrect = selected === question.correctAlternative;
-    const results = diagnosticStorage.saveResult(
-      question.subject,
-      isCorrect,
-    );
+    const results = diagnosticStorage.saveResult(question.subject, isCorrect);
 
     const isLastQuestion = state.currentIndex === state.questions.length - 1;
 

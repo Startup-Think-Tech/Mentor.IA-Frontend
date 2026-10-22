@@ -1,24 +1,16 @@
-import { diagnosticSubjects } from "@/lib/diagnostic/types/diagnostic.types";
-import type { DiagnosticResults } from "@/lib/diagnostic/schemas/diagnostic-results.schema";
+import { diagnosticSubjects } from "@/app/(private)/diagnostico/types/diagnostic.types";
+import type { DiagnosticResults } from "@/app/(private)/diagnostico/schemas/diagnostic-results.schema";
 import type {
   OnboardingDraft,
   StudyDay,
 } from "@/app/(private)/onboarding/types/onboarding.types";
-import { subjectTopics } from "@/constants/schedule.constants";
+import { subjectTopics } from "@/app/(private)/cronograma/constants/schedule.constants";
 import type {
   ScheduleDay,
   SchedulePlan,
-} from "@/lib/schedule/types/schedule.types";
+} from "@/app/(private)/cronograma/types/schedule.types";
 
-const dayOrder: StudyDay[] = [
-  "SEG",
-  "TER",
-  "QUA",
-  "QUI",
-  "SEX",
-  "SAB",
-  "DOM",
-];
+const dayOrder: StudyDay[] = ["SEG", "TER", "QUA", "QUI", "SEX", "SAB", "DOM"];
 
 function toDailyMinutes(draft: OnboardingDraft) {
   return Number(draft.dailyMinutes ?? "60");

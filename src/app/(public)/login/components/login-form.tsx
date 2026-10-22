@@ -7,13 +7,15 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { Checkbox } from "@/components/ui/checkbox";
-import { authService } from "@/services/auth.service";
 import { AuthTextField } from "@/components/auth/form/auth-text-field";
 import { AuthSubmitButton } from "@/components/auth/form/auth-submit-button";
-import { LoginInput, loginSchema } from "../utils/zod";
+import { useLogin } from "@/app/(public)/login/hooks/use-login";
+import { loginSchema } from "@/app/(public)/login/schemas/login.schema";
+import type { LoginInput } from "@/app/(public)/login/types/login.types";
 
 export function LoginForm() {
   const router = useRouter();
+  const login = useLogin();
   const [serviceError, setServiceError] = useState<string | null>(null);
 
   const form = useForm<LoginInput>({
@@ -26,7 +28,7 @@ export function LoginForm() {
     setServiceError(null);
 
     try {
-      await authService.login(values);
+      await login.mutateAsync(values);
       router.push("/onboarding");
     } catch (error) {
       setServiceError(
