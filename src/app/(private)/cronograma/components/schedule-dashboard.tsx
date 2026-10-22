@@ -50,7 +50,7 @@ export function ScheduleDashboard() {
 
   return <main className="min-h-dvh bg-[#f5f7fb]">
     <div className="grid min-h-dvh lg:grid-cols-[240px_1fr]">
-      <aside className="hidden bg-[#174fc9] px-6 py-8 text-white lg:flex lg:flex-col">
+      <aside className="hidden bg-mentor-blue px-6 py-8 text-white lg:flex lg:flex-col">
         <div className="text-2xl font-extrabold">Mentor<span className="text-[#ffd55a]">.ia</span></div>
         <nav className="mt-12 space-y-2">
           <div className="flex items-center gap-3 rounded-2xl bg-white/15 px-4 py-3 font-semibold"><CalendarDays className="size-5" />Cronograma</div>
@@ -60,7 +60,7 @@ export function ScheduleDashboard() {
       </aside>
       <div className="p-4 sm:p-6 xl:p-8"><div className="mx-auto max-w-[1500px]">
         <header className="mb-6"><p className="text-sm font-semibold text-[#7180af]">Plano personalizado</p><h1 className="mt-1 text-3xl font-extrabold tracking-tight text-[#172052] sm:text-4xl">Seu cronograma, {firstName}</h1><p className="mt-2 max-w-3xl text-[#52639c]">Plano persistido e adaptado a partir do seu diagnóstico e disponibilidade.</p></header>
-        {error ? <div role="alert" className="rounded-2xl bg-white p-6 text-destructive">{error}</div> : !plan ? <div className="grid min-h-80 place-items-center"><div className="size-10 animate-spin rounded-full border-4 border-[#dbe5ff] border-t-[#3555b6]" /></div> : <WeeklySchedule plan={plan} onSessionCompleted={markSessionCompleted} />}
+        {error ? <div role="alert" className="rounded-2xl bg-white p-6 text-destructive">{error}</div> : !plan ? <div className="grid min-h-80 place-items-center"><div className="size-10 animate-spin rounded-full border-4 border-mentor-blue-pale border-t-mentor-blue" /></div> : <WeeklySchedule plan={plan} onSessionCompleted={markSessionCompleted} />}
       </div></div>
     </div>
   </main>;

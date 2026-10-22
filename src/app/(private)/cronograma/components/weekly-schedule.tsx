@@ -40,7 +40,7 @@ export function WeeklySchedule({ plan, onSessionCompleted }: WeeklyScheduleProps
           <span>Progresso</span><span>{done} de {total} sessões concluídas</span>
         </div>
         <div className="mt-3 h-2.5 overflow-hidden rounded-full bg-[#e9eef9]" role="progressbar" aria-valuenow={done} aria-valuemin={0} aria-valuemax={total}>
-          <div className="h-full rounded-full bg-[#3555b6] transition-all" style={{ width: `${total ? (done / total) * 100 : 0}%` }} />
+          <div className="h-full rounded-full bg-mentor-blue transition-all" style={{ width: `${total ? (done / total) * 100 : 0}%` }} />
         </div>
       </div>
       <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">

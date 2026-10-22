@@ -62,7 +62,7 @@ export function ProgressDashboard() {
               <p className="text-sm font-semibold text-[#7180af]">
                 Sessões concluídas
               </p>
-              <p className="mt-3 text-4xl font-extrabold text-[#174fc9]">
+              <p className="mt-3 text-4xl font-extrabold text-mentor-blue">
                 {done}
               </p>
             </article>
@@ -70,7 +70,7 @@ export function ProgressDashboard() {
               <p className="text-sm font-semibold text-[#7180af]">
                 Sessões planejadas
               </p>
-              <p className="mt-3 text-4xl font-extrabold text-[#174fc9]">
+              <p className="mt-3 text-4xl font-extrabold text-mentor-blue">
                 {sessions.length}
               </p>
             </article>
@@ -78,7 +78,7 @@ export function ProgressDashboard() {
               <p className="text-sm font-semibold text-[#7180af]">
                 Média de desempenho
               </p>
-              <p className="mt-3 text-4xl font-extrabold text-[#174fc9]">
+              <p className="mt-3 text-4xl font-extrabold text-mentor-blue">
                 {average}%
               </p>
             </article>
@@ -108,4 +108,3 @@ export function ProgressDashboard() {
     </StudyDashboardLayout>
   );
 }
-

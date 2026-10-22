@@ -14,7 +14,7 @@ export function OnboardingPrimaryAction({
       href={href}
       className={cn(
         buttonVariants({ size: "lg" }),
-        "h-16 w-full rounded-[32px] bg-[#2f66e9] text-lg font-bold text-white hover:bg-[#2858ca]",
+        "h-16 w-full rounded-[32px] bg-mentor-blue text-lg font-bold text-white hover:bg-mentor-blue-hover",
       )}
     >
       {label}

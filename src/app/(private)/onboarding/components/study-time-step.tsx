@@ -135,10 +135,10 @@ export function StudyTimeStep() {
           </p>
         )}
         <div className="mx-auto mb-8 flex size-24 items-center justify-center rounded-full bg-[#eef2fb]">
-          <Clock3 className="size-12 text-[#2f55bd]" strokeWidth={1.7} />
+          <Clock3 className="size-12 text-mentor-blue" strokeWidth={1.7} />
         </div>
 
-        <h1 className="mx-auto max-w-[560px] text-3xl font-extrabold leading-tight text-[#2150d9] sm:text-4xl">
+        <h1 className="mx-auto max-w-[560px] text-3xl font-extrabold leading-tight text-mentor-blue sm:text-4xl">
           Quanto tempo você tem disponível por dia?
         </h1>
 
@@ -163,8 +163,8 @@ export function StudyTimeStep() {
                 className={cn(
                   "h-16 justify-start rounded-[30px] border-0 px-5 text-base font-semibold",
                   isSelected
-                    ? "bg-[#526fc6] text-white hover:bg-[#4662b8]"
-                    : "bg-[#f3eeee] text-[#3154b4] hover:bg-[#ebe4e4]",
+                    ? "bg-mentor-blue text-white hover:bg-mentor-blue-hover"
+                    : "bg-[#f3eeee] text-mentor-blue hover:bg-mentor-blue-soft",
                 )}
               >
 
@@ -172,7 +172,7 @@ export function StudyTimeStep() {
                   className={cn(
                     "mr-3 size-5 rounded-full border-2",
                     isSelected
-                      ? "border-white bg-[#526fc6]"
+                      ? "border-white bg-mentor-blue"
                       : "border-white bg-transparent",
                   )}
                 />
@@ -193,7 +193,7 @@ export function StudyTimeStep() {
         type="button"
         onClick={() => void handleContinue()}
         disabled={isLoading || isSaving}
-        className="h-16 w-full rounded-[32px] bg-[#2f55bd] text-lg font-bold text-white hover:bg-[#2448a8]"
+        className="h-16 w-full rounded-[32px] bg-mentor-blue text-lg font-bold text-white hover:bg-mentor-blue-hover"
       >
         {isSaving ? "salvando..." : "concluir"}
       </Button>

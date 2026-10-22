@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   return (
-    <div className="flex min-h-screen flex-col bg-white text-slate-900 selection:bg-blue-100 selection:text-[#174fc9]">
+    <div className="flex min-h-screen flex-col bg-white text-slate-900 selection:bg-mentor-blue-pale selection:text-mentor-blue">
       <LandingNav />
       <main className="flex-1">
         <LandingHero />

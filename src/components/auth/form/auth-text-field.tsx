@@ -19,7 +19,7 @@ export function AuthTextField({ label, error, id, ...props }: AuthTextFieldProps
       <Input
         id={id}
         aria-invalid={Boolean(error)}
-        className="h-14 rounded-[28px] border-[#dce2f4] bg-[#eef1fa] px-5 text-base text-[#22305b] placeholder:text-[#7180af] focus-visible:border-[#3555b6] focus-visible:ring-[#3555b6]/20"
+        className="h-14 rounded-[28px] border-[#dce2f4] bg-[#eef1fa] px-5 text-base text-[#22305b] placeholder:text-[#7180af] focus-visible:border-mentor-blue focus-visible:ring-mentor-blue/20"
         {...props}
       />
       <FieldError errors={error ? [{ message: error }] : []} />

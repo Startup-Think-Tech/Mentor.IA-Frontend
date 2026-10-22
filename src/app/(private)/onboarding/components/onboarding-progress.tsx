@@ -16,7 +16,7 @@ export function OnboardingProgress({
         aria-label={`Etapa ${current} de ${total}`}
       >
         <div
-          className="h-full rounded-full bg-[#2f66e9] transition-[width]"
+          className="h-full rounded-full bg-mentor-blue transition-[width]"
           style={{ width: `${progress}%` }}
         />
       </div>

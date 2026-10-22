@@ -66,7 +66,7 @@ export function LoginForm() {
         </label>
         <Link
           href="/esqueceu-senha"
-          className="font-semibold text-[#3555b6] hover:underline"
+          className="font-semibold text-mentor-blue hover:underline"
         >
           Esqueceu a senha?
         </Link>

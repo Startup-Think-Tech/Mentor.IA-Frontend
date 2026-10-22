@@ -27,7 +27,7 @@ export function LogoutButton() {
       variant="outline"
       onClick={handleLogout}
       disabled={isLoading}
-      className="fixed top-4 right-4 z-50 h-10 gap-2 rounded-full border-[#dce2f4] bg-white/95 px-4 text-[#3555b6] shadow-sm hover:bg-white"
+      className="fixed top-4 right-4 z-50 h-10 gap-2 rounded-full border-[#dce2f4] bg-white/95 px-4 text-mentor-blue shadow-sm hover:bg-white"
     >
       <LogOut className="size-4" />
       {isLoading ? "Saindo..." : "Sair"}

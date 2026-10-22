@@ -104,9 +104,9 @@ export function RegisterForm() {
 
               <span>
                 Concordo com os{" "}
-                <span className="font-medium text-[#3555b6]">Termos de Uso</span>
+                <span className="font-medium text-mentor-blue">Termos de Uso</span>
                 {" "}e{" "}
-                <span className="font-medium text-[#3555b6]">
+                <span className="font-medium text-mentor-blue">
                   Política de Privacidade
                 </span>
               </span>

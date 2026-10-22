@@ -27,7 +27,7 @@ export function DiagnosticQuiz() {
   if (isLoading) {
     return (
       <main className="grid min-h-dvh place-items-center bg-[#f6f7fb]">
-        <Loader2 className="size-9 animate-spin text-[#3555b6]" />
+        <Loader2 className="size-9 animate-spin text-mentor-blue" />
       </main>
     );
   }
@@ -91,7 +91,7 @@ export function DiagnosticQuiz() {
             href="/cronograma"
             className={cn(
               buttonVariants({ size: "lg" }),
-              "mt-8 h-12 rounded-[24px] bg-[#3555b6] px-6 font-bold text-white hover:bg-[#2e49a3]",
+              "mt-8 h-12 rounded-[24px] bg-mentor-blue px-6 font-bold text-white hover:bg-mentor-blue-hover",
             )}
           >
             Ver meu cronograma
@@ -112,14 +112,14 @@ export function DiagnosticQuiz() {
               {currentIndex + 1} de {questions.length}
             </span>
 
-            <span className="text-sm font-semibold text-[#3555b6]">
+            <span className="text-sm font-semibold text-mentor-blue">
               {diagnosticAreaLabels[currentQuestion.discipline]}
             </span>
           </div>
 
           <div className="mt-5 h-2 overflow-hidden rounded-full bg-[#e8ecf7]">
             <div
-              className="h-full rounded-full bg-[#3555b6] transition-[width]"
+              className="h-full rounded-full bg-mentor-blue transition-[width]"
               style={{ width: `${progress}%` }}
             />
           </div>
@@ -152,7 +152,7 @@ export function DiagnosticQuiz() {
                   className={cn(
                     "flex w-full items-start gap-4 rounded-2xl border p-4 text-left transition-colors",
                     selected
-                      ? "border-[#3555b6] bg-[#eef2ff]"
+                      ? "border-mentor-blue bg-mentor-blue-soft"
                       : "border-[#e3e7f1] bg-white hover:bg-[#f8f9fd]",
                   )}
                 >
@@ -160,8 +160,8 @@ export function DiagnosticQuiz() {
                     className={cn(
                       "grid size-8 shrink-0 place-items-center rounded-full text-sm font-bold",
                       selected
-                        ? "bg-[#3555b6] text-white"
-                        : "bg-[#eef1fa] text-[#3555b6]",
+                        ? "bg-mentor-blue text-white"
+                        : "bg-[#eef1fa] text-mentor-blue",
                     )}
                   >
                     {alternative.letter}
@@ -181,7 +181,7 @@ export function DiagnosticQuiz() {
             type="button"
             disabled={!selectedAlternative}
             onClick={() => void submitCurrentAnswer()}
-            className="h-12 min-w-40 rounded-[24px] bg-[#3555b6] px-6 text-base font-bold text-white hover:bg-[#2e49a3]"
+            className="h-12 min-w-40 rounded-[24px] bg-mentor-blue px-6 text-base font-bold text-white hover:bg-mentor-blue-hover"
           >
             {currentIndex === questions.length - 1
               ? "Finalizar"

@@ -8,7 +8,7 @@ export function AuthSubmitButton(props: ComponentProps<typeof Button>) {
   return (
     <Button
       type="submit"
-      className="h-14 w-full rounded-[28px] bg-[#3555b6] text-base font-bold text-white hover:bg-[#2e49a3]"
+      className="h-14 w-full rounded-[28px] bg-mentor-blue text-base font-bold text-white hover:bg-mentor-blue-hover"
       {...props}
     />
   );

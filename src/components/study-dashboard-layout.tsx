@@ -23,7 +23,7 @@ export function StudyDashboardLayout({
 }: StudyDashboardLayoutProps) {
   return (
     <main className="min-h-dvh bg-[#f5f7fb] lg:grid lg:grid-cols-[240px_1fr]">
-      <aside className="bg-[#174fc9] p-6 text-white lg:min-h-dvh">
+      <aside className="bg-mentor-blue p-6 text-white lg:min-h-dvh">
         <Link href="/cronograma" className="text-2xl font-extrabold">
           Mentor<span className="text-[#ffd55a]">.ia</span>
         </Link>
@@ -58,7 +58,7 @@ export function StudyDashboardEmpty() {
       <p className="mt-2 text-[#52639c]">
         Escolha seus dias e tempo de estudo e conclua o diagnóstico para visualizar os resultados.
       </p>
-      <Link href="/onboarding" className="mt-5 inline-block rounded-xl bg-[#174fc9] px-5 py-3 font-semibold text-white">
+      <Link href="/onboarding" className="mt-5 inline-block rounded-xl bg-mentor-blue px-5 py-3 font-semibold text-white hover:bg-mentor-blue-hover">
         Configurar meus estudos
       </Link>
     </section>

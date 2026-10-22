@@ -103,14 +103,14 @@ export function StudyDaysStep() {
             strokeWidth={1.4}
           />
           <GraduationCap
-            className="absolute right-20 top-8 z-20 size-16 text-[#213a88]"
+            className="absolute right-20 top-8 z-20 size-16 text-mentor-blue-hover"
             strokeWidth={1.5}
           />
           <ScrollText className="absolute right-10 bottom-8 z-20 size-12 text-[#caa43b]" />
           <Sparkles className="absolute right-6 top-6 size-8 text-[#ffd55a]" />
         </div>
 
-        <h1 className="mx-auto max-w-[520px] text-3xl font-extrabold leading-tight text-[#2150d9] sm:text-4xl">
+        <h1 className="mx-auto max-w-[520px] text-3xl font-extrabold leading-tight text-mentor-blue sm:text-4xl">
           Em quais dias voce consegue estudar
         </h1>
 
@@ -128,8 +128,8 @@ export function StudyDaysStep() {
                 className={cn(
                   "h-14 rounded-[28px] border-2 text-base font-bold transition-colors",
                   selected
-                    ? "border-[#213a88] bg-[#2f55bd] text-white hover:bg-[#2448a8]"
-                    : "border-transparent bg-[#f1f2f5] text-[#294ca9] hover:bg-[#e5e8ef]",
+                    ? "border-mentor-blue-hover bg-mentor-blue text-white hover:bg-mentor-blue-hover"
+                    : "border-transparent bg-[#f1f2f5] text-mentor-blue hover:bg-mentor-blue-soft",
                 )}
               >
                 {day}
@@ -148,7 +148,7 @@ export function StudyDaysStep() {
         type="button"
         onClick={handleContinue}
         disabled={isLoading}
-        className="h-16 w-full rounded-[32px] bg-[#2f55bd] text-lg font-bold text-white hover:bg-[#2448a8]"
+        className="h-16 w-full rounded-[32px] bg-mentor-blue text-lg font-bold text-white hover:bg-mentor-blue-hover"
       >
         proximo
       </Button>

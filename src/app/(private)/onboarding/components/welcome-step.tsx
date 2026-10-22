@@ -11,13 +11,13 @@ export function WelcomeStep({ name }: WelcomeStepProps) {
 
       <div className="py-10 text-center">
         <h1 className="text-4xl font-extrabold tracking-tight text-[#172052] sm:text-5xl">
-          Olá, <span className="text-[#2f66e9]">{name}</span>!
+          Olá, <span className="text-mentor-blue">{name}</span>!
         </h1>
         <div className="relative mx-auto my-10 flex h-[230px] max-w-[390px] items-center justify-center">
-          <div className="absolute h-44 w-72 rotate-3 rounded-[45%] border-2 border-[#3555b6] bg-[#f3f5fb]" />
+          <div className="absolute h-44 w-72 rotate-3 rounded-[45%] border-2 border-mentor-blue bg-[#f3f5fb]" />
           <div className="absolute h-36 w-64 -rotate-6 rounded-[45%] bg-[#e9edf8]" />
           <GraduationCap
-            className="relative z-10 size-24 text-[#213a88]"
+            className="relative z-10 size-24 text-mentor-blue-hover"
             strokeWidth={1.6}
           />
           <ScrollText className="absolute right-16 top-28 z-10 size-12 text-[#d2a833]" />

@@ -10,7 +10,7 @@ export function PrivateRoute({ children }: { children: React.ReactNode }) {
   if (isLoading || !session) {
     return (
       <main className="grid min-h-dvh place-items-center bg-white">
-        <div className="size-10 animate-spin rounded-full border-4 border-[#dbe5ff] border-t-[#2f66e9]" />
+        <div className="size-10 animate-spin rounded-full border-4 border-mentor-blue-pale border-t-mentor-blue" />
       </main>
     );
   }

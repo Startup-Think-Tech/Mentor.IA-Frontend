@@ -29,16 +29,16 @@ export function QuizReadyStep() {
       <div className="py-8 text-center">
         <div className="relative mx-auto mb-8 flex h-[250px] max-w-[390px] items-center justify-center">
           <div className="absolute h-40 w-72 rounded-[44%] bg-[#dff2ff]" />
-          <div className="absolute h-32 w-64 rotate-6 rounded-[44%] border-2 border-[#3555b6] bg-white/70" />
+          <div className="absolute h-32 w-64 rotate-6 rounded-[44%] border-2 border-mentor-blue bg-white/70" />
           <ClipboardCheck
-            className="relative z-10 size-28 text-[#2f55bd]"
+            className="relative z-10 size-28 text-mentor-blue"
             strokeWidth={1.5}
           />
           <Pencil className="absolute right-20 top-20 z-20 size-14 text-[#d3aa32]" />
           <Sparkles className="absolute right-10 top-8 size-9 text-[#ffd55a]" />
         </div>
 
-        <h1 className="text-4xl font-extrabold tracking-tight text-[#2f55bd]">
+        <h1 className="text-4xl font-extrabold tracking-tight text-mentor-blue">
           Hora do quiz!
         </h1>
 
@@ -53,7 +53,7 @@ export function QuizReadyStep() {
           type="button"
           variant="outline"
           onClick={() => router.push("/onboarding/tempo")}
-          className="h-12 min-w-36 rounded-[24px] border-[#2f55bd] text-[#2f55bd] hover:bg-[#eef2fb]"
+          className="h-12 min-w-36 rounded-[24px] border-mentor-blue text-mentor-blue hover:bg-mentor-blue-soft"
         >
           <ArrowLeft className="size-4" />
           Voltar
@@ -62,7 +62,7 @@ export function QuizReadyStep() {
         <Button
           type="button"
           onClick={handleNext}
-          className="h-12 min-w-36 rounded-[24px] bg-[#2f55bd] text-white hover:bg-[#2448a8]"
+          className="h-12 min-w-36 rounded-[24px] bg-mentor-blue text-white hover:bg-mentor-blue-hover"
         >
           Iniciar quiz
           <ArrowRight className="size-4" />
