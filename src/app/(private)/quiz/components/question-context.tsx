@@ -47,7 +47,7 @@ export function QuestionContext({ content }: QuestionContextProps) {
       nodes.push(
         <div
           key={`image-${index}`}
-          className="relative my-5 h-[min(55vw,32.5rem)] min-h-52 w-full"
+          className="relative my-3 h-[min(38vw,20rem)] min-h-40 w-full"
         >
           <Image
             src={source}
@@ -74,7 +74,7 @@ export function QuestionContext({ content }: QuestionContextProps) {
   }
 
   return (
-    <div className="mt-6 rounded-2xl border border-[#e3e7f1] border-l-4 border-l-mentor-blue bg-white px-5 py-6 text-[1.0625rem] leading-8 text-[#35446f] sm:px-7 sm:py-7 sm:text-lg sm:leading-9">
+    <div className="mt-5 rounded-2xl border border-[#e3e7f1] border-l-4 border-l-mentor-blue bg-white px-4 py-4 text-[0.9375rem] leading-7 text-[#35446f] sm:px-6 sm:py-5 sm:text-base sm:leading-7">
       {nodes}
     </div>
   );

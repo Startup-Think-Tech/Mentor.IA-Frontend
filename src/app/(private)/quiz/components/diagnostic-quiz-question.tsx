@@ -60,7 +60,7 @@ export function DiagnosticQuizQuestion({
 
         {question.context && <QuestionContext content={question.context} />}
 
-        <h1 className="mt-8 text-2xl font-extrabold leading-9 text-[#172052] sm:text-3xl sm:leading-10">
+        <h1 className="mt-6 text-xl font-extrabold leading-7 text-[#172052] sm:text-2xl sm:leading-8">
           {question.question}
         </h1>
 
