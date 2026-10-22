@@ -21,3 +21,7 @@ export type OnboardingStepActionsProps = {
   children: ReactNode;
   onBack: () => void;
 };
+
+export type OnboardingOptionIndicatorProps = {
+  selected: boolean;
+};

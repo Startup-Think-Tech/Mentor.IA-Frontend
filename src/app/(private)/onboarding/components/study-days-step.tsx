@@ -1,6 +1,6 @@
 "use client";
 
-import { CalendarDays, Check } from "lucide-react";
+import { CalendarDays } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -16,6 +16,7 @@ import {
 import { cn } from "@/lib/utils";
 
 import { OnboardingProgress } from "./onboarding-progress";
+import { OnboardingOptionIndicator } from "./onboarding-option-indicator";
 import { OnboardingPrimaryButton } from "./onboarding-primary-button";
 import { OnboardingStepActions } from "./onboarding-step-actions";
 
@@ -163,7 +164,7 @@ export function StudyDaysStep() {
                     : "border-transparent bg-[#f1f2f5] text-mentor-blue hover:bg-mentor-blue-soft",
                 )}
               >
-                {selected && <Check aria-hidden className="size-4" strokeWidth={3} />}
+                <OnboardingOptionIndicator selected={selected} />
                 {day}
               </Button>
             );

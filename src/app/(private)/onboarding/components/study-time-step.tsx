@@ -19,6 +19,7 @@ import {
 import { cn } from "@/lib/utils";
 
 import { OnboardingProgress } from "./onboarding-progress";
+import { OnboardingOptionIndicator } from "./onboarding-option-indicator";
 import { OnboardingPrimaryButton } from "./onboarding-primary-button";
 import { OnboardingStepActions } from "./onboarding-step-actions";
 
@@ -108,7 +109,7 @@ export function StudyTimeStep() {
         })),
       );
       onboardingStorage.saveStudyTime(result.data.dailyMinutes);
-      toast.success("Disponibilidade salva com sucesso.");
+      //toast.success("Disponibilidade salva com sucesso.");
       router.push("/onboarding/quiz");
     } catch (caughtError) {
       setError(
@@ -164,21 +165,14 @@ export function StudyTimeStep() {
                   setError(null);
                 }}
                 className={cn(
-                  "h-16 justify-start rounded-[30px] border-0 px-5 text-base font-semibold",
+                  "h-16 cursor-pointer justify-start rounded-[30px] border-0 px-5 text-base font-semibold disabled:cursor-not-allowed",
                   isSelected
                     ? "bg-mentor-blue text-white hover:bg-mentor-blue-hover"
                     : "bg-[#f3eeee] text-mentor-blue hover:bg-mentor-blue-soft",
                 )}
               >
 
-                <span
-                  className={cn(
-                    "mr-3 size-5 rounded-full border-2",
-                    isSelected
-                      ? "border-white bg-mentor-blue"
-                      : "border-white bg-transparent",
-                  )}
-                />
+                <OnboardingOptionIndicator selected={isSelected} />
                 {durationLabels[duration]}
               </Button>
             );
