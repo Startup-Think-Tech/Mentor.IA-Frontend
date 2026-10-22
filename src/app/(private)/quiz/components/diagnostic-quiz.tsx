@@ -180,7 +180,9 @@ export function DiagnosticQuiz() {
           <Button
             type="button"
             disabled={!selectedAlternative}
-            onClick={() => void submitCurrentAnswer()}
+            onClick={() => {
+              submitCurrentAnswer();
+            }}
             className="h-12 min-w-40 rounded-[24px] bg-mentor-blue px-6 text-base font-bold text-white hover:bg-mentor-blue-hover"
           >
             {currentIndex === questions.length - 1

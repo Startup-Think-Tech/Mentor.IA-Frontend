@@ -50,7 +50,7 @@ export function useDiagnosticQuiz() {
       }
     }
 
-    void load();
+    load();
 
     return () => {
       active = false;

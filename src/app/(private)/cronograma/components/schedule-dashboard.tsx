@@ -35,7 +35,7 @@ export function ScheduleDashboard() {
         }
       }
     }
-    void loadPlan();
+    loadPlan();
     return () => { active = false; };
   }, []);
 

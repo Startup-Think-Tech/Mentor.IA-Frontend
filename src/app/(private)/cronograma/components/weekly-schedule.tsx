@@ -54,7 +54,7 @@ export function WeeklySchedule({ plan, onSessionCompleted }: WeeklyScheduleProps
                   <p className="text-xs font-bold uppercase">{session.disciplina.nome}</p>
                   <p className="mt-2 text-sm font-semibold">{session.conteudo.nome}</p>
                   <div className="mt-3 flex items-center gap-1.5 text-xs"><Clock3 className="size-3.5" />{session.duracaoMinutos} min</div>
-                  <button type="button" disabled={completed || pendingSessionId === session.id} onClick={() => void completeSession(session.id)} className="mt-3 flex w-full items-center justify-center gap-2 rounded-lg border border-current/20 bg-white/75 px-3 py-2 text-xs font-bold disabled:cursor-not-allowed disabled:opacity-60">
+                  <button type="button" disabled={completed || pendingSessionId === session.id} onClick={() => { completeSession(session.id); }} className="mt-3 flex w-full items-center justify-center gap-2 rounded-lg border border-current/20 bg-white/75 px-3 py-2 text-xs font-bold disabled:cursor-not-allowed disabled:opacity-60">
                     {completed ? <CheckCircle2 className="size-4" /> : <Circle className="size-4" />}
                     {completed ? "Concluída" : pendingSessionId === session.id ? "Salvando..." : "Marcar como concluída"}
                   </button>

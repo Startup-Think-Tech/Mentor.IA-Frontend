@@ -122,7 +122,9 @@ export function StudyDaysStep() {
             <Button
               type="button"
               variant="link"
-              onClick={() => void loadAvailability()}
+              onClick={() => {
+                loadAvailability();
+              }}
               className="mt-1 h-auto p-0 text-destructive"
             >
               Tentar novamente

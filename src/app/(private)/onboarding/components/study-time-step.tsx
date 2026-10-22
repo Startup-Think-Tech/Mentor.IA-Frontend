@@ -189,7 +189,7 @@ export function StudyTimeStep() {
       <OnboardingStepActions onBack={() => router.push("/onboarding/dias")}>
         <OnboardingPrimaryButton
           label={isSaving ? "Salvando..." : "Concluir"}
-          onClick={() => void handleContinue()}
+          onClick={handleContinue}
           disabled={isLoading || isSaving}
         />
       </OnboardingStepActions>

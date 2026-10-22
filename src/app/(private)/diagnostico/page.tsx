@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-
-import { DiagnosticQuiz } from "@/app/(private)/diagnostico/components/diagnostic-quiz";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Diagnóstico | Mentor.ia",
@@ -8,5 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function DiagnosticPage() {
-  return <DiagnosticQuiz />;
+  redirect("/quiz");
 }
