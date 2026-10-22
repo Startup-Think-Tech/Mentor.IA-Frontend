@@ -7,10 +7,10 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { Checkbox } from "@/components/ui/checkbox";
-import { loginSchema, type LoginInput } from "@/lib/auth/schemas/login.schema";
 import { authService } from "@/services/auth.service";
 import { AuthTextField } from "@/components/auth/form/auth-text-field";
 import { AuthSubmitButton } from "@/components/auth/form/auth-submit-button";
+import { LoginInput, loginSchema } from "../utils/zod";
 
 export function LoginForm() {
   const router = useRouter();
