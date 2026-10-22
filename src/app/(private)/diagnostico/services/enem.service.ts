@@ -4,7 +4,7 @@ import type {
   DiagnosticQuestionRef,
 } from "@/app/(private)/diagnostico/types/diagnostic.types";
 
-const ENEM_API_URL = "https://api.enem.dev/v1/exams";
+const ENEM_API_URL = `${process.env.NEXT_PUBLIC_ENEM_API_URL ?? "https://api.enem.dev/v1"}/exams`;
 
 async function fetchQuestion(
   reference: DiagnosticQuestionRef,
