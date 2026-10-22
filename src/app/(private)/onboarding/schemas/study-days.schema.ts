@@ -7,5 +7,3 @@ export const studyDaysSchema = z.object({
     .array(z.enum(studyDays))
     .min(1, "Selecione pelo menos um dia para estudar."),
 });
-
-export type StudyDaysInput = z.infer<typeof studyDaysSchema>;

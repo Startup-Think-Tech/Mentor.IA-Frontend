@@ -3,11 +3,7 @@ import { ArrowRight } from "lucide-react";
 
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-
-type OnboardingPrimaryActionProps = {
-  href: string;
-  label: string;
-};
+import type { OnboardingPrimaryActionProps } from "@/app/(private)/onboarding/types/onboarding-component.types";
 
 export function OnboardingPrimaryAction({
   href,

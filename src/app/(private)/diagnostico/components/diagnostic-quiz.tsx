@@ -5,10 +5,9 @@ import Link from "next/link";
 
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
-  diagnosticSubjectLabels,
+  diagnosticAreaLabels,
 } from "@/app/(private)/diagnostico/constants/diagnostic-questions";
 import { useDiagnosticQuiz } from "@/app/(private)/diagnostico/hooks/use-diagnostic-quiz";
-import { diagnosticSubjects } from "@/app/(private)/diagnostico/types/diagnostic.types";
 import { cn } from "@/lib/utils";
 
 export function DiagnosticQuiz() {
@@ -17,7 +16,7 @@ export function DiagnosticQuiz() {
     currentIndex,
     questions,
     selectedAlternative,
-    results,
+    result,
     isLoading,
     error,
     isComplete,
@@ -60,30 +59,28 @@ export function DiagnosticQuiz() {
           </p>
 
           <div className="mt-8 grid gap-3">
-            {diagnosticSubjects.map((subject) => {
-              const isCorrect = results[subject];
-
+            {result?.desempenhos.map((performance) => {
               return (
                 <div
-                  key={subject}
+                  key={performance.disciplina.id}
                   className="flex items-center justify-between rounded-2xl bg-[#f7f8fc] px-5 py-4"
                 >
                   <span className="font-semibold text-[#22305b]">
-                    {diagnosticSubjectLabels[subject]}
+                    {performance.disciplina.nome}
                   </span>
 
                   <span
                     className={cn(
                       "flex items-center gap-2 text-sm font-bold",
-                      isCorrect ? "text-emerald-600" : "text-red-500",
+                       performance.percentual >= 50 ? "text-emerald-600" : "text-red-500",
                     )}
                   >
-                    {isCorrect ? (
+                    {performance.percentual >= 50 ? (
                       <CheckCircle2 className="size-5" />
                     ) : (
                       <CircleX className="size-5" />
                     )}
-                    {isCorrect ? "Acertou" : "Errou"}
+                    {performance.percentual}% · {performance.acertos} de {performance.totalQuestoes}
                   </span>
                 </div>
               );
@@ -116,7 +113,7 @@ export function DiagnosticQuiz() {
             </span>
 
             <span className="text-sm font-semibold text-[#3555b6]">
-              {diagnosticSubjectLabels[currentQuestion.subject]}
+              {diagnosticAreaLabels[currentQuestion.discipline]}
             </span>
           </div>
 
@@ -183,7 +180,7 @@ export function DiagnosticQuiz() {
           <Button
             type="button"
             disabled={!selectedAlternative}
-            onClick={submitCurrentAnswer}
+            onClick={() => void submitCurrentAnswer()}
             className="h-12 min-w-40 rounded-[24px] bg-[#3555b6] px-6 text-base font-bold text-white hover:bg-[#2e49a3]"
           >
             {currentIndex === questions.length - 1

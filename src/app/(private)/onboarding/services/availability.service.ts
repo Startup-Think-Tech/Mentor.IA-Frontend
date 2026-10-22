@@ -1,14 +1,5 @@
 import { apiFetch } from "@/services/api/client";
-
-export type AvailabilityDay = {
-  diaSemana: number;
-  minutosDisponiveis: number;
-};
-
-export type AvailabilityResponse = {
-  disponibilidades: AvailabilityDay[];
-  cronogramaPrecisaRecalculo: boolean;
-};
+import type { AvailabilityDay, AvailabilityResponse } from "@/app/(private)/onboarding/types/availability.types";
 
 export const availabilityService = {
   getMine(): Promise<AvailabilityDay[]> {

@@ -1,17 +1,8 @@
-import type { DiagnosticQuestionRef } from "@/app/(private)/diagnostico/types/diagnostic.types";
+import type { DiagnosticArea } from "@/app/(private)/diagnostico/types/diagnostic.types";
 
-export const diagnosticQuestionRefs: DiagnosticQuestionRef[] = [
-  { subject: "portugues", year: 2023, index: 16 },
-  { subject: "matematica", year: 2023, index: 150 },
-  { subject: "historia", year: 2023, index: 77 },
-  { subject: "biologia", year: 2023, index: 103 },
-  { subject: "geografia", year: 2023, index: 53 },
-];
-
-export const diagnosticSubjectLabels = {
-  portugues: "Português",
+export const diagnosticAreaLabels: Record<DiagnosticArea, string> = {
+  linguagens: "Linguagens",
+  "ciencias-humanas": "Ciências Humanas",
+  "ciencias-natureza": "Ciências da Natureza",
   matematica: "Matemática",
-  historia: "História",
-  biologia: "Biologia",
-  geografia: "Geografia",
 } as const;

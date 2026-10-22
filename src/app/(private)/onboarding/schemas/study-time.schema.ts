@@ -7,5 +7,3 @@ export const studyTimeSchema = z.object({
     error: "Selecione quanto tempo você tem disponível por dia.",
   }),
 });
-
-export type StudyTimeInput = z.infer<typeof studyTimeSchema>;

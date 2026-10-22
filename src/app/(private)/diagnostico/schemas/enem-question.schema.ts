@@ -18,5 +18,3 @@ export const enemQuestionSchema = z.object({
   alternativesIntroduction: z.string().min(1),
   alternatives: z.array(enemAlternativeSchema).min(2),
 });
-
-export type EnemQuestionResponse = z.infer<typeof enemQuestionSchema>;

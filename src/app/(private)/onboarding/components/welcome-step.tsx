@@ -2,10 +2,7 @@ import { GraduationCap, ScrollText, Sparkles } from "lucide-react";
 
 import { OnboardingPrimaryAction } from "./onboarding-primary-action";
 import { OnboardingProgress } from "./onboarding-progress";
-
-type WelcomeStepProps = {
-  name: string;
-};
+import type { WelcomeStepProps } from "@/app/(private)/onboarding/types/onboarding-component.types";
 
 export function WelcomeStep({ name }: WelcomeStepProps) {
   return (

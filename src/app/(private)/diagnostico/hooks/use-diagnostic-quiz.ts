@@ -2,50 +2,41 @@
 
 import { useEffect, useState } from "react";
 
-import { diagnosticQuestionRefs } from "@/app/(private)/diagnostico/constants/diagnostic-questions";
-import type { DiagnosticResults } from "@/app/(private)/diagnostico/schemas/diagnostic-results.schema";
 import { enemService } from "@/app/(private)/diagnostico/services/enem.service";
-import { diagnosticStorage } from "@/app/(private)/diagnostico/storage/diagnostic.storage";
-import type { DiagnosticQuestion } from "@/app/(private)/diagnostico/types/diagnostic.types";
+import { diagnosticoService } from "@/app/(private)/diagnostico/services/diagnostico.service";
+import type { DiagnosticoQuizState } from "@/app/(private)/diagnostico/types/diagnostico.types";
 
-type DiagnosticQuizState = {
-  questions: DiagnosticQuestion[];
-  currentIndex: number;
-  selectedAlternative: string | null;
-  results: DiagnosticResults;
-  isLoading: boolean;
-  error: string | null;
-  isComplete: boolean;
-};
-
-const initialState: DiagnosticQuizState = {
+const initialState: DiagnosticoQuizState = {
   questions: [],
   currentIndex: 0,
   selectedAlternative: null,
-  results: {},
+  diagnosticoId: null,
+  result: null,
   isLoading: true,
   error: null,
   isComplete: false,
 };
 
 export function useDiagnosticQuiz() {
-  const [state, setState] = useState<DiagnosticQuizState>(initialState);
+  const [state, setState] = useState<DiagnosticoQuizState>(initialState);
 
   useEffect(() => {
     let active = true;
 
-    enemService
-      .fetchQuestions(diagnosticQuestionRefs)
-      .then((questions) => {
+    async function load() {
+      try {
+        const diagnostico = await diagnosticoService.getOrCreateCurrent();
+        const references = await diagnosticoService.getQuestions(diagnostico.id);
+        const questions = await enemService.fetchQuestions(references);
         if (!active) return;
 
         setState((current) => ({
           ...current,
           questions,
+          diagnosticoId: diagnostico.id,
           isLoading: false,
         }));
-      })
-      .catch((error: unknown) => {
+      } catch (error) {
         if (!active) return;
 
         setState((current) => ({
@@ -56,7 +47,10 @@ export function useDiagnosticQuiz() {
               ? error.message
               : "Não foi possível carregar o diagnóstico.",
         }));
-      });
+      }
+    }
+
+    void load();
 
     return () => {
       active = false;
@@ -72,28 +66,41 @@ export function useDiagnosticQuiz() {
     }));
   }
 
-  function submitCurrentAnswer() {
+  async function submitCurrentAnswer() {
     const question = state.questions[state.currentIndex];
     const selected = state.selectedAlternative;
 
-    if (!question || !selected) {
+    if (!question || !selected || !state.diagnosticoId) {
       return;
     }
 
     const isCorrect = selected === question.correctAlternative;
-    const results = diagnosticStorage.saveResult(question.subject, isCorrect);
-
     const isLastQuestion = state.currentIndex === state.questions.length - 1;
 
-    setState((current) => ({
-      ...current,
-      results,
-      selectedAlternative: null,
-      currentIndex: isLastQuestion
-        ? current.currentIndex
-        : current.currentIndex + 1,
-      isComplete: isLastQuestion,
-    }));
+    try {
+      await diagnosticoService.registerAnswer(
+        state.diagnosticoId,
+        question.id,
+        selected,
+        isCorrect,
+      );
+      const result = isLastQuestion
+        ? await diagnosticoService.finalize(state.diagnosticoId)
+        : null;
+
+      setState((current) => ({
+        ...current,
+        result,
+        selectedAlternative: null,
+        currentIndex: isLastQuestion ? current.currentIndex : current.currentIndex + 1,
+        isComplete: isLastQuestion,
+      }));
+    } catch (error) {
+      setState((current) => ({
+        ...current,
+        error: error instanceof Error ? error.message : "Não foi possível salvar sua resposta.",
+      }));
+    }
   }
 
   return {

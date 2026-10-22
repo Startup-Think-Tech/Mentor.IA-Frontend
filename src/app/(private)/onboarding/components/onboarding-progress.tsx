@@ -1,7 +1,4 @@
-type OnboardingProgressProps = {
-  current: number;
-  total: number;
-};
+import type { OnboardingProgressProps } from "@/app/(private)/onboarding/types/onboarding-component.types";
 
 export function OnboardingProgress({
   current,

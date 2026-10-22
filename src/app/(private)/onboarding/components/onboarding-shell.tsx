@@ -1,11 +1,5 @@
-import type { ReactNode } from "react";
-
 import { OnboardingBrandPanel } from "./onboarding-brand-panel";
-
-type OnboardingShellProps = {
-  children: ReactNode;
-  brandPanel?: ReactNode;
-};
+import type { OnboardingShellProps } from "@/app/(private)/onboarding/types/onboarding-component.types";
 
 export function OnboardingShell({
   children,

@@ -1,22 +1,25 @@
-import type { DiagnosticSubject } from "@/app/(private)/diagnostico/types/diagnostic.types";
-import type { StudyDay } from "@/app/(private)/onboarding/types/onboarding.types";
-
 export type ScheduleSession = {
-  subject: DiagnosticSubject;
-  topic: string;
-  minutes: number;
-  priority: "high" | "normal";
-};
-
-export type ScheduleDay = {
-  day: StudyDay;
-  dateLabel: string;
-  sessions: ScheduleSession[];
+  id: string;
+  tipo: string;
+  status: string;
+  agendadoPara: string;
+  duracaoMinutos: number;
+  revisaoId: string | null;
+  disciplina: { id: string; nome: string; codigo: string };
+  conteudo: { id: string; nome: string };
 };
 
 export type SchedulePlan = {
-  days: ScheduleDay[];
-  weakSubjects: DiagnosticSubject[];
-  strongSubjects: DiagnosticSubject[];
-  dailyMinutes: number;
+  id: string;
+  status: string;
+  validoAPartir: string;
+  validoAte: string;
+  geradoEm: string;
+  totalSessoes: number;
+  sessoes: ScheduleSession[];
+};
+
+export type WeeklyScheduleProps = {
+  plan: SchedulePlan;
+  onSessionCompleted: (sessionId: string) => void;
 };

@@ -1,17 +1,18 @@
-export const diagnosticSubjects = [
-  "portugues",
+export const diagnosticAreas = [
+  "linguagens",
+  "ciencias-humanas",
+  "ciencias-natureza",
   "matematica",
-  "historia",
-  "biologia",
-  "geografia",
 ] as const;
 
-export type DiagnosticSubject = (typeof diagnosticSubjects)[number];
+export type DiagnosticArea = (typeof diagnosticAreas)[number];
 
 export type DiagnosticQuestionRef = {
-  subject: DiagnosticSubject;
+  id: string;
   year: number;
   index: number;
+  language: string;
+  discipline: DiagnosticArea;
 };
 
 export type DiagnosticAlternative = {
@@ -21,10 +22,11 @@ export type DiagnosticAlternative = {
 };
 
 export type DiagnosticQuestion = {
+  id: string;
   title: string;
   year: number;
   index: number;
-  subject: DiagnosticSubject;
+  discipline: DiagnosticArea;
   context: string | null;
   question: string;
   correctAlternative: string;
