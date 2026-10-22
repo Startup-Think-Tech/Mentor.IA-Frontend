@@ -3,23 +3,23 @@
 import { useEffect, useState } from "react";
 
 import {
-  StudyDashboardEmpty,
-  StudyDashboardLayout,
-} from "@/components/study-dashboard-layout";
-import { performanceService } from "@/app/(private)/desempenho/services/performance.service";
+  DashboardEmptyState,
+} from "@/components/dashboard/dashboard-empty-state";
+import { DashboardShell } from "@/components/dashboard/dashboard-shell";
+import { dashboardService } from "@/app/(private)/dashboard/services/dashboard.service";
 import type {
-  Performance,
-  StudySession,
-} from "@/app/(private)/desempenho/types/performance.types";
+  DashboardPerformance,
+  DashboardStudySession,
+} from "@/app/(private)/dashboard/types/dashboard.types";
 
-export function ProgressDashboard() {
-  const [performances, setPerformances] = useState<Performance[] | null>(null);
-  const [sessions, setSessions] = useState<StudySession[] | null>(null);
+export function Dashboard() {
+  const [performances, setPerformances] = useState<DashboardPerformance[] | null>(null);
+  const [sessions, setSessions] = useState<DashboardStudySession[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   useEffect(() => {
     Promise.all([
-      performanceService.getCurrent(),
-      performanceService.getSessions(),
+      dashboardService.getPerformances(),
+      dashboardService.getStudySessions(),
     ])
       .then(([nextPerformances, nextSessions]) => {
         setPerformances(nextPerformances);
@@ -42,10 +42,9 @@ export function ProgressDashboard() {
       )
     : 0;
   return (
-    <StudyDashboardLayout
-      title="Meu desempenho"
-      subtitle="Acompanhe suas sessões concluídas e resultados persistidos."
-      current="/desempenho"
+    <DashboardShell
+      title="Visão geral"
+      subtitle="Acompanhe suas sessões concluídas e os resultados do seu diagnóstico."
     >
       {error ? (
         <p role="alert" className="text-destructive">
@@ -54,7 +53,7 @@ export function ProgressDashboard() {
       ) : !performances || !sessions ? (
         <p>Carregando...</p>
       ) : performances.length === 0 ? (
-        <StudyDashboardEmpty />
+        <DashboardEmptyState />
       ) : (
         <>
           <div className="grid gap-4 sm:grid-cols-3">
@@ -105,6 +104,6 @@ export function ProgressDashboard() {
           </section>
         </>
       )}
-    </StudyDashboardLayout>
+    </DashboardShell>
   );
 }

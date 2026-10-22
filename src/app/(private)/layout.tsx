@@ -1,4 +1,3 @@
-import { LogoutButton } from "@/components/auth/logout-button";
 import { PrivateRoute } from "@/components/auth/private-route";
 
 export default function PrivateLayout({
@@ -7,7 +6,6 @@ export default function PrivateLayout({
   return (
     <PrivateRoute>
       {children}
-      <LogoutButton />
     </PrivateRoute>
   );
 }
