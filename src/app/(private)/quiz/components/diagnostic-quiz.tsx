@@ -1,6 +1,7 @@
 "use client";
 
 import { CheckCircle2, CircleX, Loader2 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -9,6 +10,7 @@ import {
 } from "@/app/(private)/diagnostico/constants/diagnostic-questions";
 import { useDiagnosticQuiz } from "@/app/(private)/diagnostico/hooks/use-diagnostic-quiz";
 import { cn } from "@/lib/utils";
+import { QuestionContext } from "./question-context";
 
 export function DiagnosticQuiz() {
   const {
@@ -18,6 +20,7 @@ export function DiagnosticQuiz() {
     selectedAlternative,
     result,
     isLoading,
+    isSubmitting,
     error,
     isComplete,
     selectAlternative,
@@ -104,8 +107,8 @@ export function DiagnosticQuiz() {
   const progress = ((currentIndex + 1) / questions.length) * 100;
 
   return (
-    <main className="min-h-dvh bg-[#f6f7fb] px-4 py-8 sm:px-6 lg:py-12">
-      <section className="mx-auto max-w-4xl rounded-[32px] bg-white p-6 shadow-sm sm:p-10">
+    <main className="min-h-dvh bg-white px-4 py-8 sm:px-6 lg:py-12">
+      <section className="mx-auto max-w-4xl rounded-[32px] border border-[#e3e7f1] bg-white p-6 sm:p-10">
         <header>
           <div className="flex items-center justify-between gap-4">
             <span className="rounded-full bg-[#38c7cf] px-4 py-2 text-sm font-bold text-white">
@@ -126,17 +129,15 @@ export function DiagnosticQuiz() {
         </header>
 
         <div className="mt-8">
-          <p className="text-sm font-medium text-[#8a97bd]">
+          <p className="text-base font-semibold text-[#7180af]">
             ENEM {currentQuestion.year} · Questão {currentQuestion.index}
           </p>
 
           {currentQuestion.context && (
-            <div className="mt-5 whitespace-pre-line rounded-2xl bg-[#f8f9fd] p-5 text-sm leading-7 text-[#485983]">
-              {currentQuestion.context}
-            </div>
+            <QuestionContext content={currentQuestion.context} />
           )}
 
-          <h1 className="mt-6 text-xl font-bold leading-8 text-[#22305b] sm:text-2xl">
+          <h1 className="mt-8 text-2xl font-extrabold leading-9 text-[#172052] sm:text-3xl sm:leading-10">
             {currentQuestion.question}
           </h1>
 
@@ -148,9 +149,10 @@ export function DiagnosticQuiz() {
                 <button
                   key={alternative.letter}
                   type="button"
+                  disabled={isSubmitting}
                   onClick={() => selectAlternative(alternative.letter)}
                   className={cn(
-                    "flex w-full items-start gap-4 rounded-2xl border p-4 text-left transition-colors",
+                    "flex w-full cursor-pointer items-start gap-4 rounded-2xl border p-5 text-left transition-colors disabled:cursor-not-allowed disabled:opacity-60",
                     selected
                       ? "border-mentor-blue bg-mentor-blue-soft"
                       : "border-[#e3e7f1] bg-white hover:bg-[#f8f9fd]",
@@ -158,7 +160,7 @@ export function DiagnosticQuiz() {
                 >
                   <span
                     className={cn(
-                      "grid size-8 shrink-0 place-items-center rounded-full text-sm font-bold",
+                      "grid size-9 shrink-0 place-items-center rounded-full text-base font-bold",
                       selected
                         ? "bg-mentor-blue text-white"
                         : "bg-[#eef1fa] text-mentor-blue",
@@ -167,9 +169,29 @@ export function DiagnosticQuiz() {
                     {alternative.letter}
                   </span>
 
-                  <span className="pt-1 text-sm leading-6 text-[#35446f] sm:text-base">
-                    {alternative.text}
-                  </span>
+                  <div className="min-w-0 flex-1">
+                    {alternative.text && (
+                      <span className="block pt-0.5 text-base leading-7 text-[#263a70] sm:text-lg sm:leading-8">
+                        {alternative.text}
+                      </span>
+                    )}
+                    {alternative.imageUrl && (
+                      <div className="relative h-52 w-full">
+                        <Image
+                          src={alternative.imageUrl}
+                          alt={`Alternativa ${alternative.letter}`}
+                          fill
+                          sizes="(max-width: 640px) 100vw, 700px"
+                          className="rounded-lg object-contain"
+                        />
+                      </div>
+                    )}
+                    {!alternative.text && !alternative.imageUrl && (
+                      <span className="block pt-0.5 text-sm leading-6 text-[#657196]">
+                        Conteúdo visual indisponível no acervo do ENEM.
+                      </span>
+                    )}
+                  </div>
                 </button>
               );
             })}
@@ -179,13 +201,15 @@ export function DiagnosticQuiz() {
         <div className="mt-8 flex justify-end">
           <Button
             type="button"
-            disabled={!selectedAlternative}
+            disabled={!selectedAlternative || isSubmitting}
             onClick={() => {
               submitCurrentAnswer();
             }}
             className="h-12 min-w-40 rounded-[24px] bg-mentor-blue px-6 text-base font-bold text-white hover:bg-mentor-blue-hover"
           >
-            {currentIndex === questions.length - 1
+            {isSubmitting
+              ? "Enviando..."
+              : currentIndex === questions.length - 1
               ? "Finalizar"
               : "Próxima questão"}
           </Button>

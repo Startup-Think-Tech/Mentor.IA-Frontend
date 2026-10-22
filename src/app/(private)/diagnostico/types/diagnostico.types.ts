@@ -31,6 +31,7 @@ export type DiagnosticoQuizState = {
   diagnosticoId: string | null;
   result: DiagnosticoResultado | null;
   isLoading: boolean;
+  isSubmitting: boolean;
   error: string | null;
   isComplete: boolean;
 };

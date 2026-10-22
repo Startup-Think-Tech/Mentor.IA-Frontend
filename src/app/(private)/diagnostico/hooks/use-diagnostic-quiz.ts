@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { diagnosticoService } from "@/app/(private)/diagnostico/services/diagnostico.service";
 import type { DiagnosticoQuizState } from "@/app/(private)/diagnostico/types/diagnostico.types";
@@ -12,12 +12,14 @@ const initialState: DiagnosticoQuizState = {
   diagnosticoId: null,
   result: null,
   isLoading: true,
+  isSubmitting: false,
   error: null,
   isComplete: false,
 };
 
 export function useDiagnosticQuiz() {
   const [state, setState] = useState<DiagnosticoQuizState>(initialState);
+  const isSubmittingRef = useRef(false);
 
   useEffect(() => {
     let active = true;
@@ -26,13 +28,18 @@ export function useDiagnosticQuiz() {
       try {
         const diagnostico = await diagnosticoService.getOrCreateCurrent();
         const questions = await diagnosticoService.getQuestions(diagnostico.id);
+        const result = questions.length === 0
+          ? await diagnosticoService.finalize(diagnostico.id)
+          : null;
         if (!active) return;
 
         setState((current) => ({
           ...current,
           questions,
           diagnosticoId: diagnostico.id,
+          result,
           isLoading: false,
+          isComplete: result !== null,
         }));
       } catch (error) {
         if (!active) return;
@@ -68,10 +75,17 @@ export function useDiagnosticQuiz() {
     const question = state.questions[state.currentIndex];
     const selected = state.selectedAlternative;
 
-    if (!question || !selected || !state.diagnosticoId) {
+    if (
+      !question ||
+      !selected ||
+      !state.diagnosticoId ||
+      isSubmittingRef.current
+    ) {
       return;
     }
 
+    isSubmittingRef.current = true;
+    setState((current) => ({ ...current, isSubmitting: true, error: null }));
     const isLastQuestion = state.currentIndex === state.questions.length - 1;
 
     try {
@@ -90,12 +104,16 @@ export function useDiagnosticQuiz() {
         selectedAlternative: null,
         currentIndex: isLastQuestion ? current.currentIndex : current.currentIndex + 1,
         isComplete: isLastQuestion,
+        isSubmitting: false,
       }));
     } catch (error) {
       setState((current) => ({
         ...current,
+        isSubmitting: false,
         error: error instanceof Error ? error.message : "Não foi possível salvar sua resposta.",
       }));
+    } finally {
+      isSubmittingRef.current = false;
     }
   }
 

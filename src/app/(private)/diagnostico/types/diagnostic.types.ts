@@ -9,7 +9,8 @@ export type DiagnosticArea = (typeof diagnosticAreas)[number];
 
 export type DiagnosticAlternative = {
   letter: string;
-  text: string;
+  text: string | null;
+  imageUrl: string | null;
 };
 
 export type DiagnosticQuestion = {
