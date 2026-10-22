@@ -1,8 +1,11 @@
 "use client";
 
+import { Check } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import type { OnboardingProgressProps } from "@/app/(private)/onboarding/types/onboarding-component.types";
+
+const stepLabels = ["Boas-vindas", "Disponibilidade", "Rotina", "Quiz"];
 
 export function OnboardingProgress({
   current,
@@ -22,6 +25,14 @@ export function OnboardingProgress({
 
   return (
     <nav aria-label={`Etapa ${current} de ${total}`}>
+      <div className="mb-4 flex items-center justify-between text-sm">
+        <p className="font-bold text-mentor-blue">
+          Etapa {current} de {total}
+        </p>
+        <p className="font-medium text-[#7180af]">
+          {stepLabels[current - 1] ?? `Etapa ${current}`}
+        </p>
+      </div>
       <ol className="flex w-full items-center">
         {Array.from({ length: total }, (_, index) => {
           const step = index + 1;
@@ -35,6 +46,7 @@ export function OnboardingProgress({
             >
               <span
                 aria-current={isCurrent ? "step" : undefined}
+                aria-label={isComplete ? `Etapa ${step} concluída` : `Etapa ${step}`}
                 className={`grid size-8 shrink-0 place-items-center rounded-full border-2 text-xs font-extrabold ${
                   isCurrent
                     ? "border-mentor-blue bg-mentor-blue text-white ring-4 ring-mentor-blue/15"
@@ -43,7 +55,7 @@ export function OnboardingProgress({
                       : "border-mentor-blue-pale bg-white text-[#7180af]"
                 }`}
               >
-                {step}
+                {isComplete ? <Check aria-hidden className="size-4" strokeWidth={3} /> : step}
               </span>
               {step < total ? (
                 <span className="mx-2 h-0.5 min-w-3 flex-1 overflow-hidden rounded-full bg-mentor-blue-pale">

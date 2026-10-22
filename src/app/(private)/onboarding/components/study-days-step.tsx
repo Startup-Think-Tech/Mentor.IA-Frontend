@@ -1,8 +1,6 @@
 "use client";
 
-import {
-  CalendarDays,
-} from "lucide-react";
+import { CalendarDays, Check } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -142,8 +140,12 @@ export function StudyDaysStep() {
           Em quais dias você consegue estudar?
         </h1>
 
-        <div className="mx-auto mt-10 grid max-w-[430px] grid-cols-3 gap-4">
-          {studyDays.map((day) => {
+        <p className="mx-auto mt-3 max-w-[460px] text-base leading-7 text-[#52639c]">
+          Selecione todos os dias em que você tem disponibilidade.
+        </p>
+
+        <div className="mx-auto mt-8 grid max-w-[520px] grid-cols-12 gap-3">
+          {studyDays.map((day, index) => {
             const selected = selectedDays.includes(day);
 
             return (
@@ -154,17 +156,25 @@ export function StudyDaysStep() {
                 disabled={isLoading}
                 onClick={() => toggleDay(day)}
                 className={cn(
-                  "h-14 rounded-[28px] border-2 text-base font-bold transition-colors",
+                  "col-span-3 h-14 cursor-pointer rounded-[28px] border-2 text-base font-bold transition-colors disabled:cursor-not-allowed",
+                  index === 4 && "col-start-2",
                   selected
                     ? "border-mentor-blue-hover bg-mentor-blue text-white hover:bg-mentor-blue-hover"
                     : "border-transparent bg-[#f1f2f5] text-mentor-blue hover:bg-mentor-blue-soft",
                 )}
               >
+                {selected && <Check aria-hidden className="size-4" strokeWidth={3} />}
                 {day}
               </Button>
             );
           })}
         </div>
+
+        <p aria-live="polite" className="mt-4 text-sm font-semibold text-[#52639c]">
+          {selectedDays.length === 0
+            ? "Nenhum dia selecionado"
+            : `${selectedDays.length} ${selectedDays.length === 1 ? "dia selecionado" : "dias selecionados"}`}
+        </p>
 
         {error && (
           <p role="alert" className="mt-4 text-sm font-medium text-destructive">
