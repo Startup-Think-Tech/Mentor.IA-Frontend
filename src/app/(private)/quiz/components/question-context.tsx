@@ -47,7 +47,7 @@ export function QuestionContext({ content }: QuestionContextProps) {
       nodes.push(
         <div
           key={`image-${index}`}
-          className="relative my-3 h-[min(38vw,20rem)] min-h-40 w-full"
+          className="relative my-3 h-[min(30vw,14rem)] min-h-32 w-full"
         >
           <Image
             src={source}

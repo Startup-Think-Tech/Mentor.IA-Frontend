@@ -99,7 +99,7 @@ export function DiagnosticQuizQuestion({
                     </span>
                   )}
                   {alternative.imageUrl && (
-                    <div className="relative h-52 w-full">
+                    <div className="relative h-28 w-full">
                       <Image
                         src={alternative.imageUrl}
                         alt={`Alternativa ${alternative.letter}`}

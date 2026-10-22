@@ -27,7 +27,7 @@ const initialState: DiagnosticoQuizState = {
 };
 
 function storageKey(diagnosticoId: string) {
-  return `diagnostic-quiz:${diagnosticoId}`;
+  return `diagnostic-quiz:v3:${diagnosticoId}`;
 }
 
 function readStoredProgress(diagnosticoId: string): Partial<StoredQuizProgress> | null {
