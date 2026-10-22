@@ -14,7 +14,6 @@ export default function CadastroPage() {
     <main className="min-h-dvh bg-white">
       <section className="grid min-h-dvh lg:grid-cols-[1.05fr_0.95fr]">
         <MentorBrandPanel
-          variant="cadastro"
           title={
             <>
               Comece sua jornada de{" "}
@@ -26,20 +25,10 @@ export default function CadastroPage() {
 
         <div className="flex items-center justify-center px-6 py-10 sm:px-10 lg:px-16">
           <div className="w-full max-w-[520px]">
-            <div className="mb-8 flex items-center justify-between">
+            <div className="mb-8">
               <div className="text-2xl font-extrabold text-mentor-blue lg:hidden">
                 Mentor.ia ✦
               </div>
-
-              <p className="ml-auto text-sm text-[#7180af]">
-                Já tem uma conta?{" "}
-                <Link
-                  href="/login"
-                  className="font-bold text-mentor-blue hover:underline"
-                >
-                  Entrar
-                </Link>
-              </p>
             </div>
             <header className="mb-8">
               <h2 className="text-4xl font-extrabold tracking-tight text-[#22305b]">
@@ -52,6 +41,15 @@ export default function CadastroPage() {
             </header>
 
             <RegisterForm />
+            <p className="mt-8 text-center text-sm text-[#7180af]">
+              Já tem uma conta?{" "}
+              <Link
+                href="/login"
+                className="font-bold text-mentor-blue hover:underline"
+              >
+                Entrar
+              </Link>
+            </p>
           </div>
         </div>
       </section>

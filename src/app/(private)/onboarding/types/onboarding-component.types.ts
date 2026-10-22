@@ -11,7 +11,6 @@ export type WelcomeStepProps = {
 
 export type OnboardingShellProps = {
   children: ReactNode;
-  brandPanel?: ReactNode;
 };
 
 export type OnboardingPrimaryActionProps = {

@@ -14,7 +14,6 @@ export default function LoginPage() {
     <main className="min-h-dvh w-full bg-white">
       <section className="grid min-h-dvh w-full overflow-hidden bg-white lg:grid-cols-[1.08fr_0.92fr]">
         <MentorBrandPanel
-          variant="login"
           title="Tecnologia que entende como você aprende."
           description="Uma experiência de estudo mais simples, organizada e personalizada para sua jornada."
         />
