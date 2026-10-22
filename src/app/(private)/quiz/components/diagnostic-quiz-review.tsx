@@ -1,4 +1,5 @@
 import { ArrowLeft, ArrowRight, ClipboardCheck, Pencil } from "lucide-react";
+import Image from "next/image";
 
 import { diagnosticAreaLabels } from "@/app/(private)/diagnostico/constants/diagnostic-questions";
 import type { DiagnosticQuestion } from "@/app/(private)/diagnostico/types/diagnostic.types";
@@ -46,33 +47,62 @@ export function DiagnosticQuizReview({
       </header>
 
       <div className="mt-6 grid gap-3">
-        {questions.map((question, index) => (
-          <article
-            key={question.id}
-            className="flex items-center gap-4 rounded-2xl border border-[#e3e7f1] bg-[#fbfcff] px-4 py-4 sm:px-5"
-          >
-            <span className="grid size-10 shrink-0 place-items-center rounded-full bg-mentor-blue-soft text-sm font-extrabold text-mentor-blue">
-              {index + 1}
-            </span>
-            <div className="min-w-0 flex-1">
-              <p className="text-xs font-bold uppercase tracking-[0.08em] text-[#7180af]">
-                {diagnosticAreaLabels[question.discipline]} · Alternativa {answers[question.id]}
-              </p>
-              <p className="mt-1 truncate font-semibold text-[#22305b]">
-                {question.question}
-              </p>
-            </div>
-            <Button
-              type="button"
-              variant="ghost"
-              onClick={() => onEditQuestion(index)}
-              className="h-10 shrink-0 rounded-xl px-3 font-bold text-mentor-blue hover:bg-mentor-blue-soft hover:text-mentor-blue"
+        {questions.map((question, index) => {
+          const selectedAlternative = question.alternatives.find(
+            (alternative) => alternative.letter === answers[question.id],
+          );
+
+          return (
+            <article
+              key={question.id}
+              className="grid grid-cols-[2.5rem_minmax(0,1fr)_auto] items-center gap-3 overflow-hidden rounded-2xl border border-[#e3e7f1] bg-[#fbfcff] px-4 py-3 sm:gap-4 sm:px-5"
             >
-              <Pencil className="size-4" />
-              <span className="sr-only sm:not-sr-only sm:ml-2">Alterar</span>
-            </Button>
-          </article>
-        ))}
+              <span className="grid size-10 shrink-0 place-items-center rounded-full bg-mentor-blue-soft text-sm font-extrabold text-mentor-blue">
+                {index + 1}
+              </span>
+              <div className="min-w-0 flex-1">
+                <div className="flex min-w-0 items-center gap-2">
+                  <p className="truncate text-xs font-bold uppercase tracking-[0.08em] text-[#7180af]">
+                    {diagnosticAreaLabels[question.discipline]}
+                  </p>
+                  <span className="shrink-0 rounded-full bg-mentor-blue-soft px-2 py-0.5 text-xs font-extrabold text-mentor-blue">
+                    {answers[question.id]}
+                  </span>
+                </div>
+                <p className="mt-1 break-words text-sm font-semibold leading-6 text-[#22305b] sm:text-base">
+                  {question.question}
+                </p>
+                {selectedAlternative?.text && (
+                  <p className="mt-2 border-l-2 border-mentor-blue pl-3 text-sm leading-5 text-[#52618c]">
+                    <span className="font-bold text-[#35446f]">Resposta marcada: </span>
+                    {selectedAlternative.text}
+                  </p>
+                )}
+                {selectedAlternative?.imageUrl && (
+                  <div className="relative mt-2 h-20 w-32">
+                    <Image
+                      src={selectedAlternative.imageUrl}
+                      alt={`Alternativa ${selectedAlternative.letter} marcada`}
+                      fill
+                      sizes="128px"
+                      className="rounded-md object-contain"
+                    />
+                  </div>
+                )}
+              </div>
+              <Button
+                type="button"
+                variant="ghost"
+                onClick={() => onEditQuestion(index)}
+                className="size-10 shrink-0 rounded-xl p-0 text-mentor-blue hover:bg-mentor-blue-soft hover:text-mentor-blue"
+                aria-label={`Alterar resposta da questão ${index + 1}`}
+              >
+                <Pencil className="size-4" />
+                <span className="sr-only">Alterar</span>
+              </Button>
+            </article>
+          );
+        })}
       </div>
 
       <div className="mt-8 flex flex-col-reverse gap-3 border-t border-[#e8ecf7] pt-6 sm:flex-row sm:items-center sm:justify-between">
