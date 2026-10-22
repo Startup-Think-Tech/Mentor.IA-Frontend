@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { DashboardShell } from "@/components/dashboard/dashboard-shell";
+import { DashboardLoading } from "@/components/dashboard/dashboard-loading";
 import { useAuthSession } from "@/context/auth-session.context";
 import { ApiError } from "@/services/api/client";
 import { scheduleService } from "@/app/(private)/cronograma/services/schedule.service";
@@ -57,9 +58,7 @@ export function ScheduleDashboard() {
           {error}
         </div>
       ) : !plan ? (
-        <div className="grid min-h-80 place-items-center">
-          <div className="size-10 animate-spin rounded-full border-4 border-mentor-blue-pale border-t-mentor-blue" />
-        </div>
+        <DashboardLoading />
       ) : (
         <WeeklySchedule plan={plan} onSessionCompleted={markSessionCompleted} />
       )}

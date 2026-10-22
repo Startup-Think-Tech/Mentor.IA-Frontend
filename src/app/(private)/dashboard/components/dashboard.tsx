@@ -5,12 +5,16 @@ import { useEffect, useState } from "react";
 import {
   DashboardEmptyState,
 } from "@/components/dashboard/dashboard-empty-state";
+import { DashboardLoading } from "@/components/dashboard/dashboard-loading";
 import { DashboardShell } from "@/components/dashboard/dashboard-shell";
+import { useDashboardInsight } from "@/app/(private)/dashboard/hooks/use-dashboard-insight";
 import { dashboardService } from "@/app/(private)/dashboard/services/dashboard.service";
 import type {
   DashboardPerformance,
   DashboardStudySession,
 } from "@/app/(private)/dashboard/types/dashboard.types";
+
+import { DashboardInsight } from "./dashboard-insight";
 
 export function Dashboard() {
   const [performances, setPerformances] = useState<DashboardPerformance[] | null>(null);
@@ -41,6 +45,7 @@ export function Dashboard() {
           performances.length,
       )
     : 0;
+  const dashboardInsight = useDashboardInsight((performances?.length ?? 0) > 0);
   return (
     <DashboardShell
       title="Visão geral"
@@ -51,7 +56,7 @@ export function Dashboard() {
           {error}
         </p>
       ) : !performances || !sessions ? (
-        <p>Carregando...</p>
+        <DashboardLoading />
       ) : performances.length === 0 ? (
         <DashboardEmptyState />
       ) : (
@@ -81,6 +86,9 @@ export function Dashboard() {
                 {average}%
               </p>
             </article>
+          </div>
+          <div className="mt-6">
+            <DashboardInsight {...dashboardInsight} />
           </div>
           <section className="mt-6 rounded-3xl border border-[#e4e8f2] bg-white p-6">
             <h2 className="text-xl font-bold text-[#22305b]">

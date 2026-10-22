@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { DashboardEmptyState } from "@/components/dashboard/dashboard-empty-state";
+import { DashboardLoading } from "@/components/dashboard/dashboard-loading";
 import { DashboardShell } from "@/components/dashboard/dashboard-shell";
 import { gapsService } from "@/app/(private)/gaps/services/gaps.service";
 import type { Gap } from "@/app/(private)/gaps/types/gap.types";
@@ -32,7 +33,7 @@ export function GapsDashboard() {
       {error ? (
         <p role="alert" className="text-destructive">{error}</p>
       ) : !gaps ? (
-        <p>Carregando...</p>
+        <DashboardLoading />
       ) : gaps.length === 0 ? (
         <DashboardEmptyState />
       ) : (
