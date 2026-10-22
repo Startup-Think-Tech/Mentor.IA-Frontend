@@ -1,13 +1,16 @@
 "use client";
 
-import { GraduationCap, ScrollText, Sparkles } from "lucide-react";
+import { GraduationCap } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 import { useAuthSession } from "@/context/auth-session.context";
 
 import { OnboardingPrimaryAction } from "./onboarding-primary-action";
 import { OnboardingProgress } from "./onboarding-progress";
+import { OnboardingStepActions } from "./onboarding-step-actions";
 
 export function WelcomeStep() {
+  const router = useRouter();
   const session = useAuthSession();
   const firstName = session.user.name.trim().split(/\s+/)[0];
 
@@ -19,15 +22,12 @@ export function WelcomeStep() {
         <h1 className="text-4xl font-extrabold tracking-tight text-[#172052] sm:text-5xl">
           Olá, <span className="text-mentor-blue">{firstName}</span>!
         </h1>
-        <div className="relative mx-auto my-10 flex h-[230px] max-w-[390px] items-center justify-center">
-          <div className="absolute h-44 w-72 rotate-3 rounded-[45%] border-2 border-mentor-blue bg-[#f3f5fb]" />
-          <div className="absolute h-36 w-64 -rotate-6 rounded-[45%] bg-[#e9edf8]" />
+        <div className="relative mx-auto my-10 grid size-44 place-items-center rounded-full bg-mentor-blue-soft sm:size-48">
+          <div className="absolute inset-3 rounded-full border border-mentor-blue/15" />
           <GraduationCap
-            className="relative z-10 size-24 text-mentor-blue-hover"
-            strokeWidth={1.6}
+            className="relative z-10 size-24 text-mentor-blue"
+            strokeWidth={1.5}
           />
-          <ScrollText className="absolute right-16 top-28 z-10 size-12 text-[#d2a833]" />
-          <Sparkles className="absolute right-12 top-8 size-9 text-[#ffd55a]" />
         </div>
 
         <p className="mx-auto max-w-[520px] text-lg leading-8 text-[#3851a6]">
@@ -35,10 +35,12 @@ export function WelcomeStep() {
           Assim, podemos criar um plano de estudos que realmente combine com você.
         </p>
       </div>
-      <OnboardingPrimaryAction
-        href="/onboarding/dias"
-        label="vamos começar"
-      />
+      <OnboardingStepActions onBack={() => router.back()}>
+        <OnboardingPrimaryAction
+          href="/onboarding/dias"
+          label="Vamos começar"
+        />
+      </OnboardingStepActions>
     </div>
   );
 }

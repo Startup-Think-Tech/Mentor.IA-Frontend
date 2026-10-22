@@ -1,6 +1,8 @@
 "use client";
 
-import { CalendarDays, GraduationCap, ScrollText, Sparkles } from "lucide-react";
+import {
+  CalendarDays,
+} from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -16,6 +18,8 @@ import {
 import { cn } from "@/lib/utils";
 
 import { OnboardingProgress } from "./onboarding-progress";
+import { OnboardingPrimaryButton } from "./onboarding-primary-button";
+import { OnboardingStepActions } from "./onboarding-step-actions";
 
 export function StudyDaysStep() {
   const router = useRouter();
@@ -40,7 +44,7 @@ export function StudyDaysStep() {
       setLoadError(
         caughtError instanceof Error
           ? caughtError.message
-          : "Nao foi possivel carregar sua disponibilidade.",
+          : "Não foi possível carregar sua disponibilidade.",
       );
     } finally {
       setIsLoading(false);
@@ -66,7 +70,7 @@ export function StudyDaysStep() {
           setLoadError(
             caughtError instanceof Error
               ? caughtError.message
-              : "Nao foi possivel carregar sua disponibilidade.",
+              : "Não foi possível carregar sua disponibilidade.",
           );
         }
       } finally {
@@ -126,22 +130,16 @@ export function StudyDaysStep() {
             </Button>
           </div>
         )}
-        <div className="relative mx-auto mb-8 flex h-[220px] max-w-[360px] items-center justify-center">
-          <div className="absolute h-36 w-72 rounded-[45%] bg-[#eef2fb]" />
+        <div className="relative mx-auto mb-8 grid size-44 place-items-center rounded-full bg-mentor-blue-soft sm:size-48">
+          <div className="absolute inset-3 rounded-full border border-mentor-blue/15" />
           <CalendarDays
-            className="relative z-10 size-28 text-[#172052]"
-            strokeWidth={1.4}
-          />
-          <GraduationCap
-            className="absolute right-20 top-8 z-20 size-16 text-mentor-blue-hover"
+            className="relative z-10 size-24 text-mentor-blue"
             strokeWidth={1.5}
           />
-          <ScrollText className="absolute right-10 bottom-8 z-20 size-12 text-[#caa43b]" />
-          <Sparkles className="absolute right-6 top-6 size-8 text-[#ffd55a]" />
         </div>
 
         <h1 className="mx-auto max-w-[520px] text-3xl font-extrabold leading-tight text-mentor-blue sm:text-4xl">
-          Em quais dias voce consegue estudar
+          Em quais dias você consegue estudar?
         </h1>
 
         <div className="mx-auto mt-10 grid max-w-[430px] grid-cols-3 gap-4">
@@ -174,14 +172,13 @@ export function StudyDaysStep() {
           </p>
         )}
       </div>
-      <Button
-        type="button"
-        onClick={handleContinue}
-        disabled={isLoading}
-        className="h-16 w-full rounded-[32px] bg-mentor-blue text-lg font-bold text-white hover:bg-mentor-blue-hover"
-      >
-        proximo
-      </Button>
+      <OnboardingStepActions onBack={() => router.push("/onboarding")}>
+        <OnboardingPrimaryButton
+          label="Próximo"
+          onClick={handleContinue}
+          disabled={isLoading}
+        />
+      </OnboardingStepActions>
     </div>
   );
 }

@@ -19,6 +19,8 @@ import {
 import { cn } from "@/lib/utils";
 
 import { OnboardingProgress } from "./onboarding-progress";
+import { OnboardingPrimaryButton } from "./onboarding-primary-button";
+import { OnboardingStepActions } from "./onboarding-step-actions";
 
 const durationLabels: Record<StudyDuration, string> = {
   "30": "30 minutos",
@@ -65,7 +67,7 @@ export function StudyTimeStep() {
           setLoadError(
             caughtError instanceof Error
               ? caughtError.message
-              : "Nao foi possivel carregar sua disponibilidade.",
+              : "Não foi possível carregar sua disponibilidade.",
           );
         }
       } finally {
@@ -73,7 +75,7 @@ export function StudyTimeStep() {
       }
     }
 
-    void loadAvailability();
+    loadAvailability();
     return () => {
       active = false;
     };
@@ -112,7 +114,7 @@ export function StudyTimeStep() {
       setError(
         caughtError instanceof Error
           ? caughtError.message
-          : "Nao foi possivel salvar sua disponibilidade.",
+          : "Não foi possível salvar sua disponibilidade.",
       );
     } finally {
       setIsSaving(false);
@@ -131,11 +133,12 @@ export function StudyTimeStep() {
         )}
         {loadError && (
           <p role="alert" className="mx-auto mb-6 max-w-[520px] text-sm font-medium text-destructive">
-            {loadError} Voce ainda pode ajustar e tentar salvar novamente.
+            {loadError} Você ainda pode ajustar e tentar salvar novamente.
           </p>
         )}
-        <div className="mx-auto mb-8 flex size-24 items-center justify-center rounded-full bg-[#eef2fb]">
-          <Clock3 className="size-12 text-mentor-blue" strokeWidth={1.7} />
+        <div className="relative mx-auto mb-8 grid size-44 place-items-center rounded-full bg-mentor-blue-soft sm:size-48">
+          <div className="absolute inset-3 rounded-full border border-mentor-blue/15" />
+          <Clock3 className="relative z-10 size-24 text-mentor-blue" strokeWidth={1.5} />
         </div>
 
         <h1 className="mx-auto max-w-[560px] text-3xl font-extrabold leading-tight text-mentor-blue sm:text-4xl">
@@ -189,14 +192,13 @@ export function StudyTimeStep() {
         )}
       </div>
 
-      <Button
-        type="button"
-        onClick={() => void handleContinue()}
-        disabled={isLoading || isSaving}
-        className="h-16 w-full rounded-[32px] bg-mentor-blue text-lg font-bold text-white hover:bg-mentor-blue-hover"
-      >
-        {isSaving ? "salvando..." : "concluir"}
-      </Button>
+      <OnboardingStepActions onBack={() => router.push("/onboarding/dias")}>
+        <OnboardingPrimaryButton
+          label={isSaving ? "Salvando..." : "Concluir"}
+          onClick={() => void handleContinue()}
+          disabled={isLoading || isSaving}
+        />
+      </OnboardingStepActions>
     </div>
   );
 }
