@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { StudyTimeEntry } from "@/app/(private)/onboarding/components/study-time-entry";
+import { StudyTimeStep } from "@/app/(private)/onboarding/components/study-time-step";
 
 export const metadata: Metadata = {
   title: "Tempo disponível | Mentor.ia",
@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function StudyTimePage() {
-  return <StudyTimeEntry />;
+  return <StudyTimeStep />;
 }

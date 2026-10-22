@@ -1,17 +1,23 @@
+"use client";
+
 import { GraduationCap, ScrollText, Sparkles } from "lucide-react";
+
+import { useAuthSession } from "@/context/auth-session.context";
 
 import { OnboardingPrimaryAction } from "./onboarding-primary-action";
 import { OnboardingProgress } from "./onboarding-progress";
-import type { WelcomeStepProps } from "@/app/(private)/onboarding/types/onboarding-component.types";
 
-export function WelcomeStep({ name }: WelcomeStepProps) {
+export function WelcomeStep() {
+  const session = useAuthSession();
+  const firstName = session.user.name.trim().split(/\s+/)[0];
+
   return (
     <div className="flex min-h-[720px] flex-col justify-between py-3">
       <OnboardingProgress current={1} total={4} />
 
       <div className="py-10 text-center">
         <h1 className="text-4xl font-extrabold tracking-tight text-[#172052] sm:text-5xl">
-          Olá, <span className="text-mentor-blue">{name}</span>!
+          Olá, <span className="text-mentor-blue">{firstName}</span>!
         </h1>
         <div className="relative mx-auto my-10 flex h-[230px] max-w-[390px] items-center justify-center">
           <div className="absolute h-44 w-72 rotate-3 rounded-[45%] border-2 border-mentor-blue bg-[#f3f5fb]" />

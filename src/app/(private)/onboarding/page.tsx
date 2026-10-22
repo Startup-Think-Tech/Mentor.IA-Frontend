@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { OnboardingEntry } from "@/app/(private)/onboarding/components/onboarding-entry";
+import { WelcomeStep } from "@/app/(private)/onboarding/components/welcome-step";
 
 export const metadata: Metadata = {
   title: "Onboarding | Mentor.ia",
@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function OnboardingPage() {
-  return <OnboardingEntry />;
+  return <WelcomeStep />;
 }

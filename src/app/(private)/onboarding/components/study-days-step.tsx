@@ -48,7 +48,37 @@ export function StudyDaysStep() {
   }
 
   useEffect(() => {
-    void loadAvailability();
+    let active = true;
+
+    async function loadInitialAvailability() {
+      try {
+        const disponibilidades = await availabilityService.getMine();
+        const savedDays = toStudyDays(disponibilidades);
+
+        if (!active) return;
+
+        setSelectedDays(savedDays);
+        if (savedDays.length > 0) {
+          onboardingStorage.saveStudyDays(savedDays);
+        }
+      } catch (caughtError) {
+        if (active) {
+          setLoadError(
+            caughtError instanceof Error
+              ? caughtError.message
+              : "Nao foi possivel carregar sua disponibilidade.",
+          );
+        }
+      } finally {
+        if (active) setIsLoading(false);
+      }
+    }
+
+    loadInitialAvailability();
+
+    return () => {
+      active = false;
+    };
   }, []);
 
   function toggleDay(day: StudyDay) {
