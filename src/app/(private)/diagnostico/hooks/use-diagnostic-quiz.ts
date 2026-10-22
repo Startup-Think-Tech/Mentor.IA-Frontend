@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-import { enemService } from "@/app/(private)/diagnostico/services/enem.service";
 import { diagnosticoService } from "@/app/(private)/diagnostico/services/diagnostico.service";
 import type { DiagnosticoQuizState } from "@/app/(private)/diagnostico/types/diagnostico.types";
 
@@ -26,8 +25,7 @@ export function useDiagnosticQuiz() {
     async function load() {
       try {
         const diagnostico = await diagnosticoService.getOrCreateCurrent();
-        const references = await diagnosticoService.getQuestions(diagnostico.id);
-        const questions = await enemService.fetchQuestions(references);
+        const questions = await diagnosticoService.getQuestions(diagnostico.id);
         if (!active) return;
 
         setState((current) => ({
@@ -74,7 +72,6 @@ export function useDiagnosticQuiz() {
       return;
     }
 
-    const isCorrect = selected === question.correctAlternative;
     const isLastQuestion = state.currentIndex === state.questions.length - 1;
 
     try {
@@ -82,7 +79,6 @@ export function useDiagnosticQuiz() {
         state.diagnosticoId,
         question.id,
         selected,
-        isCorrect,
       );
       const result = isLastQuestion
         ? await diagnosticoService.finalize(state.diagnosticoId)
