@@ -1,18 +1,16 @@
 "use client";
 
 import {
-  ArrowLeft,
   ArrowRight,
   ClipboardCheck,
-  Pencil,
-  Sparkles,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-import { Button } from "@/components/ui/button";
 import { onboardingStorage } from "@/app/(private)/onboarding/storage/onboarding.storage";
 
 import { OnboardingProgress } from "./onboarding-progress";
+import { OnboardingPrimaryButton } from "./onboarding-primary-button";
+import { OnboardingStepActions } from "./onboarding-step-actions";
 
 export function QuizReadyStep() {
   const router = useRouter();
@@ -27,15 +25,12 @@ export function QuizReadyStep() {
       <OnboardingProgress current={4} total={4} />
 
       <div className="py-8 text-center">
-        <div className="relative mx-auto mb-8 flex h-[250px] max-w-[390px] items-center justify-center">
-          <div className="absolute h-40 w-72 rounded-[44%] bg-[#dff2ff]" />
-          <div className="absolute h-32 w-64 rotate-6 rounded-[44%] border-2 border-mentor-blue bg-white/70" />
+        <div className="relative mx-auto mb-8 grid size-44 place-items-center rounded-full bg-mentor-blue-soft sm:size-48">
+          <div className="absolute inset-3 rounded-full border border-mentor-blue/15" />
           <ClipboardCheck
-            className="relative z-10 size-28 text-mentor-blue"
+            className="relative z-10 size-24 text-mentor-blue"
             strokeWidth={1.5}
           />
-          <Pencil className="absolute right-20 top-20 z-20 size-14 text-[#d3aa32]" />
-          <Sparkles className="absolute right-10 top-8 size-9 text-[#ffd55a]" />
         </div>
 
         <h1 className="text-4xl font-extrabold tracking-tight text-mentor-blue">
@@ -48,26 +43,13 @@ export function QuizReadyStep() {
         </p>
       </div>
 
-      <div className="flex items-center justify-between gap-4">
-        <Button
-          type="button"
-          variant="outline"
-          onClick={() => router.push("/onboarding/tempo")}
-          className="h-12 min-w-36 rounded-[24px] border-mentor-blue text-mentor-blue hover:bg-mentor-blue-soft"
-        >
-          <ArrowLeft className="size-4" />
-          Voltar
-        </Button>
-
-        <Button
-          type="button"
+      <OnboardingStepActions onBack={() => router.push("/onboarding/tempo")}>
+        <OnboardingPrimaryButton
+          label="Iniciar quiz"
           onClick={handleNext}
-          className="h-12 min-w-36 rounded-[24px] bg-mentor-blue text-white hover:bg-mentor-blue-hover"
-        >
-          Iniciar quiz
-          <ArrowRight className="size-4" />
-        </Button>
-      </div>
+          trailingIcon={<ArrowRight className="size-5" />}
+        />
+      </OnboardingStepActions>
     </div>
   );
 }
