@@ -5,11 +5,11 @@ import { useEffect, useState } from "react";
 
 import {
   diagnosticSubjectLabels,
-} from "@/constants/diagnostic-questions";
+} from "@/app/(private)/diagnostico/constants/diagnostic-questions";
 import {
   subjectBadgeClasses,
-} from "@/constants/schedule.constants";
-import type { SchedulePlan } from "@/lib/schedule/types/schedule.types";
+} from "@/app/(private)/cronograma/constants/schedule.constants";
+import type { SchedulePlan } from "@/app/(private)/cronograma/types/schedule.types";
 import { cn } from "@/lib/utils";
 
 const STORAGE_KEY = "mentor.ia.completed-study-sessions";

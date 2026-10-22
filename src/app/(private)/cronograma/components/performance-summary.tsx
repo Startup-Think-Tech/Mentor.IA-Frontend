@@ -2,9 +2,9 @@ import { CheckCircle2, CircleX, Target } from "lucide-react";
 
 import {
   diagnosticSubjectLabels,
-} from "@/constants/diagnostic-questions";
-import type { DiagnosticResults } from "@/lib/diagnostic/schemas/diagnostic-results.schema";
-import { diagnosticSubjects } from "@/lib/diagnostic/types/diagnostic.types";
+} from "@/app/(private)/diagnostico/constants/diagnostic-questions";
+import type { DiagnosticResults } from "@/app/(private)/diagnostico/schemas/diagnostic-results.schema";
+import { diagnosticSubjects } from "@/app/(private)/diagnostico/types/diagnostic.types";
 import { cn } from "@/lib/utils";
 
 type PerformanceSummaryProps = {

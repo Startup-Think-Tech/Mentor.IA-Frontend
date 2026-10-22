@@ -7,16 +7,15 @@ import { Controller, useForm } from "react-hook-form";
 
 import { Checkbox } from "@/components/ui/checkbox";
 import { FieldError } from "@/components/ui/field";
-import {
-  registerSchema,
-  type RegisterInput,
-} from "@/lib/auth/schemas/register.schema";
-import { authService } from "@/services/auth.service";
 import { AuthTextField } from "@/components/auth/form/auth-text-field";
 import { AuthSubmitButton } from "@/components/auth/form/auth-submit-button";
+import { useRegister } from "@/app/(public)/cadastro/hooks/use-register";
+import { registerSchema } from "@/app/(public)/cadastro/schemas/register.schema";
+import type { RegisterInput } from "@/app/(public)/cadastro/types/register.types";
 
 export function RegisterForm() {
   const router = useRouter();
+  const register = useRegister();
   const [serviceError, setServiceError] = useState<string | null>(null);
   const form = useForm<RegisterInput>({
     resolver: zodResolver(registerSchema),
@@ -34,7 +33,7 @@ export function RegisterForm() {
     setServiceError(null);
 
     try {
-      await authService.register({
+      await register.mutateAsync({
         name: values.name,
         email: values.email,
         password: values.password,

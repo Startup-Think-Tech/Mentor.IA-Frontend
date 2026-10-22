@@ -1,4 +1,4 @@
-import type { DiagnosticSubject } from "@/lib/diagnostic/types/diagnostic.types";
+import type { DiagnosticSubject } from "@/app/(private)/diagnostico/types/diagnostic.types";
 import type { StudyDay } from "@/app/(private)/onboarding/types/onboarding.types";
 
 export type ScheduleSession = {

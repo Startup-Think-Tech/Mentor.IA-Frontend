@@ -1,8 +1,8 @@
-import { enemQuestionSchema } from "@/lib/diagnostic/schemas/enem-question.schema";
+import { enemQuestionSchema } from "@/app/(private)/diagnostico/schemas/enem-question.schema";
 import type {
   DiagnosticQuestion,
   DiagnosticQuestionRef,
-} from "@/lib/diagnostic/types/diagnostic.types";
+} from "@/app/(private)/diagnostico/types/diagnostic.types";
 
 const ENEM_API_URL = "https://api.enem.dev/v1/exams";
 

@@ -6,9 +6,9 @@ import Link from "next/link";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   diagnosticSubjectLabels,
-} from "@/constants/diagnostic-questions";
+} from "@/app/(private)/diagnostico/constants/diagnostic-questions";
 import { useDiagnosticQuiz } from "@/app/(private)/diagnostico/hooks/use-diagnostic-quiz";
-import { diagnosticSubjects } from "@/lib/diagnostic/types/diagnostic.types";
+import { diagnosticSubjects } from "@/app/(private)/diagnostico/types/diagnostic.types";
 import { cn } from "@/lib/utils";
 
 export function DiagnosticQuiz() {

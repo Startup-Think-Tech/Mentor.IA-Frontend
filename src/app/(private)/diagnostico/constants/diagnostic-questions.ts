@@ -1,4 +1,4 @@
-import type { DiagnosticQuestionRef } from "@/lib/diagnostic/types/diagnostic.types";
+import type { DiagnosticQuestionRef } from "@/app/(private)/diagnostico/types/diagnostic.types";
 
 export const diagnosticQuestionRefs: DiagnosticQuestionRef[] = [
   { subject: "portugues", year: 2023, index: 16 },

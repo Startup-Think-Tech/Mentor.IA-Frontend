@@ -1,4 +1,4 @@
-import type { DiagnosticSubject } from "@/lib/diagnostic/types/diagnostic.types";
+import type { DiagnosticSubject } from "@/app/(private)/diagnostico/types/diagnostic.types";
 
 export const subjectTopics: Record<DiagnosticSubject, string[]> = {
   portugues: ["Interpretação de texto", "Gramática", "Variação linguística"],

@@ -8,9 +8,7 @@ export const registerSchema = z
       .trim()
       .min(1, "Informe seu e-mail.")
       .email("Informe um e-mail válido."),
-    password: z
-      .string()
-      .min(8, "A senha deve ter pelo menos 8 caracteres."),
+    password: z.string().min(8, "A senha deve ter pelo menos 8 caracteres."),
     confirmPassword: z.string().min(1, "Confirme sua senha."),
     acceptedTerms: z
       .boolean()
@@ -20,5 +18,3 @@ export const registerSchema = z
     message: "As senhas não coincidem.",
     path: ["confirmPassword"],
   });
-
-export type RegisterInput = z.infer<typeof registerSchema>;

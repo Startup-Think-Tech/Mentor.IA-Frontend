@@ -5,12 +5,12 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { useAuthSession } from "@/context/auth-session.context";
-import type { DiagnosticResults } from "@/lib/diagnostic/schemas/diagnostic-results.schema";
-import { diagnosticStorage } from "@/lib/diagnostic/diagnostic.storage";
+import type { DiagnosticResults } from "@/app/(private)/diagnostico/schemas/diagnostic-results.schema";
+import { diagnosticStorage } from "@/app/(private)/diagnostico/storage/diagnostic.storage";
 import type { OnboardingDraft } from "@/app/(private)/onboarding/types/onboarding.types";
 import { onboardingStorage } from "@/app/(private)/onboarding/storage/onboarding.storage";
-import { scheduleService } from "@/services/schedule.service";
-import type { SchedulePlan } from "@/lib/schedule/types/schedule.types";
+import { scheduleService } from "@/app/(private)/cronograma/services/schedule.service";
+import type { SchedulePlan } from "@/app/(private)/cronograma/types/schedule.types";
 
 import { PerformanceSummary } from "./performance-summary";
 import { StudyCalendar } from "./study-calendar";
