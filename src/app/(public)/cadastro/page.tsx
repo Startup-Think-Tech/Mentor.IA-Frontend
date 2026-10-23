@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 
 import { RegisterForm } from "@/app/(public)/cadastro/components/register-form";
 import { MentorBrandPanel } from "@/components/mentor-brand-panel";
@@ -23,7 +24,14 @@ export default function CadastroPage() {
           description="Crie sua conta e tenha acesso a uma experiência personalizada para desenvolver suas habilidades e alcançar seus objetivos."
         />
 
-        <div className="flex items-center justify-center px-6 py-10 sm:px-10 lg:px-16">
+        <div className="relative flex items-center justify-center px-6 py-10 sm:px-10 lg:px-16">
+          <Link
+            href="/"
+            className="absolute left-6 top-6 inline-flex items-center gap-2 text-sm font-semibold text-[#52639c] transition-colors hover:text-mentor-blue sm:left-10 lg:left-16"
+          >
+            <ArrowLeft className="size-4" />
+            Voltar ao início
+          </Link>
           <div className="w-full max-w-[520px]">
             <div className="mb-8">
               <div className="text-2xl font-extrabold text-mentor-blue lg:hidden">
