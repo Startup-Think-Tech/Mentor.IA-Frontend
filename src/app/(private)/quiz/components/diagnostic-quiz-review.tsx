@@ -122,7 +122,7 @@ export function DiagnosticQuizReview({
           onClick={onSubmit}
           className="h-12 rounded-[24px] bg-mentor-blue px-6 text-base font-bold text-white hover:bg-mentor-blue-hover"
         >
-          {isSubmitting ? "Finalizando..." : "Finalizar diagnóstico"}
+          {isSubmitting ? "Enviando..." : "Enviar para análise"}
           {!isSubmitting && <ArrowRight className="size-4" />}
         </Button>
       </div>
