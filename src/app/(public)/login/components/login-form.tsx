@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { Checkbox } from "@/components/ui/checkbox";
 import { AuthTextField } from "@/components/auth/form/auth-text-field";
 import { AuthSubmitButton } from "@/components/auth/form/auth-submit-button";
+import { diagnosticoService } from "@/app/(private)/diagnostico/services/diagnostico.service";
 import { useLogin } from "@/app/(public)/login/hooks/use-login";
 import { loginSchema } from "@/app/(public)/login/schemas/login.schema";
 import type { LoginInput } from "@/app/(public)/login/types/login.types";
@@ -29,7 +30,10 @@ export function LoginForm() {
 
     try {
       await login.mutateAsync(values);
-      router.push("/onboarding");
+      const hasCompletedDiagnostic = await diagnosticoService
+        .hasCompleted()
+        .catch(() => false);
+      router.replace(hasCompletedDiagnostic ? "/dashboard" : "/onboarding");
     } catch (error) {
       setServiceError(
         error instanceof Error ? error.message : "Não foi possível entrar.",

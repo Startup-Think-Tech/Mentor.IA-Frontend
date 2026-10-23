@@ -35,6 +35,11 @@ function getOrCreateCurrent(): Promise<Diagnostico> {
 export const diagnosticoService = {
   getOrCreateCurrent,
 
+  async hasCompleted() {
+    const history = await apiFetch<Diagnostico[]>("/diagnosticos/historico");
+    return history.some((diagnostico) => diagnostico.status === "FINALIZADO");
+  },
+
   getQuestions(id: string): Promise<DiagnosticQuestion[]> {
     return apiFetch<DiagnosticQuestion[]>(`/diagnosticos/${id}/questoes`);
   },
